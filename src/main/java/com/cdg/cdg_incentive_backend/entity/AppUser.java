@@ -1,5 +1,6 @@
 package com.cdg.cdg_incentive_backend.entity;
 
+import com.cdg.cdg_incentive_backend.branch.Branch;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,5 +1,9 @@
-package com.cdg.cdg_incentive_backend.entity;
+package com.cdg.cdg_incentive_backend.branch;
 
+import com.cdg.cdg_incentive_backend.entity.AppUser;
+import com.cdg.cdg_incentive_backend.entity.BaseEntity;
+import com.cdg.cdg_incentive_backend.targetcommission.entity.TargetCommission;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -47,6 +51,7 @@ public class Branch extends BaseEntity {
     private Set<AppUser> appUsers = new HashSet<>();
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private Set<TargetCommission> targetCommissions = new HashSet<>();
 }
 
