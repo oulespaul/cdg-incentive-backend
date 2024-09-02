@@ -9,5 +9,4 @@ public class CdgIncentiveBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CdgIncentiveBackendApplication.class, args);
 	}
-
 }

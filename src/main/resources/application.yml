@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://34.142.227.164:5432/cdg-dev
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://sts.windows.net/7bc43426-d426-446f-957d-757125ec2693/
+          jwk-set-uri: https://login.microsoftonline.com/7bc43426-d426-446f-957d-757125ec2693/discovery/keys
