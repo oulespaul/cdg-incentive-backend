@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.branch;
+package com.cdg.cdg_incentive_backend.store;
 
 import com.cdg.cdg_incentive_backend.entity.AppUser;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,39 +17,31 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "branch")
+@Table(name = "store")
 @EqualsAndHashCode(callSuper = true)
-public class Branch extends BaseEntity {
-
+public class Store extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "branch_no")
-    private String branchNo;
-
-    @Column(name = "branch_name")
-    private String branchName;
-
-    @Column(name = "branch_code")
-    private String branchCode;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @OneToMany(mappedBy = "branch")
+    @Column(name = "bu")
+    private String bu;
+    @Column(name = "brand")
+    private String brand;
+    @Column(name = "segment")
+    private String segment;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "region_name")
+    private String regionName;
+    @Column(name = "type")
+    private String type;
+    @Column(name = "store_no")
+    private String storeNumber;
+    @Column(name = "store_code")
+    private String storeCode;
+    @OneToMany(mappedBy = "store")
     private Set<AppUser> appUsers = new HashSet<>();
-
-    @OneToMany(mappedBy = "branch")
+    @OneToMany(mappedBy = "store")
     @JsonIgnore
     private Set<TargetCommission> targetCommissions = new HashSet<>();
 }

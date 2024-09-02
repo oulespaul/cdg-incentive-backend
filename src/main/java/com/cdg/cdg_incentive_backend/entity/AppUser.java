@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.entity;
 
-import com.cdg.cdg_incentive_backend.branch.Branch;
+import com.cdg.cdg_incentive_backend.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,7 +36,7 @@ public class AppUser extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
-    private Branch branch;
+    private Store store;
 
     @ManyToMany
     @JoinTable(

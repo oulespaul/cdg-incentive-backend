@@ -13,12 +13,12 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
                 tc.id as id,
                 tc.month as month,
                 tc.year as year,
-                'CDS' as bu,
-                b.branchNo as branchNo,
-                b.branchName as branchName,
-                b.branchCode as branchCode,
+                s.bu as storeBU,
+                s.storeNumber as storeNumber,
+                s.name as storeName,
+                s.storeCode as storeCode,
                 tc.comTgTotal as targetCommission
-            ) FROM TargetCommission tc JOIN tc.branch b
+            ) FROM TargetCommission tc JOIN tc.store s
             """)
     List<TargetCommissionResponse> findAllResponse();
 }

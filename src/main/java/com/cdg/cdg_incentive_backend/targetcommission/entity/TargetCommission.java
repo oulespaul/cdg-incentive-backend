@@ -1,7 +1,7 @@
 package com.cdg.cdg_incentive_backend.targetcommission.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
-import com.cdg.cdg_incentive_backend.branch.Branch;
+import com.cdg.cdg_incentive_backend.store.Store;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,22 +20,18 @@ public class TargetCommission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "year")
     private String year;
-
+    @Column(name = "month")
     private String month;
-
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
-    private Branch branch;
-
     @Column(name = "com_tg_total")
     private BigDecimal comTgTotal;
-
     @Column(name = "actual_ly_total")
     private BigDecimal actualLyTotal;
-
     @Column(name = "acutal_ly_id")
     private BigDecimal actualLyId;
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Store store;
 }
 
