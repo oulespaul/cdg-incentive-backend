@@ -35,7 +35,7 @@ public class AppUser extends BaseEntity {
     private String lastname;
 
     @ManyToOne
-    @JoinColumn(name = "branch_id")
+    @JoinColumn(name = "store_id")
     private Store store;
 
     @ManyToMany

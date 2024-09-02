@@ -31,7 +31,7 @@ public class TargetCommission extends BaseEntity {
     @Column(name = "acutal_ly_id")
     private BigDecimal actualLyId;
     @ManyToOne
-    @JoinColumn(name = "branch_id")
+    @JoinColumn(name = "store_id")
     private Store store;
 }
 
