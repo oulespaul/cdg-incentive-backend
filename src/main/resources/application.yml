@@ -1,8 +1,16 @@
 spring:
   datasource:
-    url: jdbc:postgresql://34.142.227.164:5432/cdg-dev
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql:///${DB_DATABASE:cdg-dev}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 5
+      data-source-properties:
+        socketFactory: com.google.cloud.sql.postgres.SocketFactory
+        cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:lively-crane-432311-b0:asia-southeast1:cdg-incentive-dev}
+        enableIamAuth: true
+        sslmode: disable
   jpa:
     hibernate:
       ddl-auto: update
