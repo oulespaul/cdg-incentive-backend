@@ -9,8 +9,6 @@ spring:
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
         cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:lively-crane-432311-b0:asia-southeast1:cdg-incentive-dev}
-        enableIamAuth: true
-        sslmode: disable
   jpa:
     hibernate:
       ddl-auto: update
