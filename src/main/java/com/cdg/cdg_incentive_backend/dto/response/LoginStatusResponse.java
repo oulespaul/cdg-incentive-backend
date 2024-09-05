@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.dto;
+package com.cdg.cdg_incentive_backend.dto.response;
 
 import lombok.Data;
 

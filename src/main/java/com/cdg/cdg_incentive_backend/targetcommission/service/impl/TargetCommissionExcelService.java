@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.targetcommission.service;
+package com.cdg.cdg_incentive_backend.targetcommission.service.impl;
 
 import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
 import com.cdg.cdg_incentive_backend.store.Store;
