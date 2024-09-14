@@ -24,6 +24,8 @@ public class Brand extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "brand_id")
+    private String brandId;
     @Column(name = "brand_name")
     private String brandName;
     @Column(name = "credit_consign")
