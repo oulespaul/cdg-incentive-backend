@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
-import com.cdg.cdg_incentive_backend.module.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
 import com.cdg.cdg_incentive_backend.module.branch.service.BranchService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;

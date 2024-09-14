@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.branch.service.impl;
 
-import com.cdg.cdg_incentive_backend.module.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import com.cdg.cdg_incentive_backend.module.branch.repositories.BranchRepository;
 import com.cdg.cdg_incentive_backend.module.branch.service.BranchService;
 import lombok.RequiredArgsConstructor;

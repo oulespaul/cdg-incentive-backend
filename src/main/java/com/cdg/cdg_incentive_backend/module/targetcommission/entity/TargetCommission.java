@@ -1,7 +1,8 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
-import com.cdg.cdg_incentive_backend.module.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
+import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,5 +34,7 @@ public class TargetCommission extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
+    @OneToOne(mappedBy = "targetCommission", cascade = CascadeType.ALL)
+    private TargetBranch targetBranch;
 }
 
