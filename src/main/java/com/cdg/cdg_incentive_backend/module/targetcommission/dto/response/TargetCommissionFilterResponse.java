@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.targetcommission.dto.response;
+package com.cdg.cdg_incentive_backend.module.targetcommission.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package com.cdg.cdg_incentive_backend.targetcommission.repositories;
+package com.cdg.cdg_incentive_backend.module.targetcommission.repositories;
 
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionFilterResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
+import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface TargetCommissionRepository extends JpaRepository<TargetCommission, Integer> {
     @Query("""
-            SELECT new com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionResponse(
+            SELECT new com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse(
                 tc.id as id,
                 tc.month as month,
                 tc.year as year,
@@ -47,7 +47,7 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
     List<String> findDistinctMonth();
 
     @Query("""
-            SELECT DISTINCT new com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionFilterResponse(
+            SELECT DISTINCT new com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse(
             CONCAT(s.branchNumber, ' - ', s.name) AS label,
             s.branchNumber AS value
             )

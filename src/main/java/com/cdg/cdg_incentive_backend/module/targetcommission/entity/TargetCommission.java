@@ -1,7 +1,7 @@
-package com.cdg.cdg_incentive_backend.targetcommission.entity;
+package com.cdg.cdg_incentive_backend.module.targetcommission.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
-import com.cdg.cdg_incentive_backend.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.Branch;
 import jakarta.persistence.*;
 import lombok.*;
 

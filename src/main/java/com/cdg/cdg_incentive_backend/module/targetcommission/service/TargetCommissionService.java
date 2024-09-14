@@ -1,8 +1,8 @@
-package com.cdg.cdg_incentive_backend.targetcommission.service;
+package com.cdg.cdg_incentive_backend.module.targetcommission.service;
 
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionFilterResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

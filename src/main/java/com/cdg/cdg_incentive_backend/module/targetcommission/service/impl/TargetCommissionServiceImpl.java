@@ -1,15 +1,14 @@
-package com.cdg.cdg_incentive_backend.targetcommission.service.impl;
+package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionFilterResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionResponse;
-import com.cdg.cdg_incentive_backend.targetcommission.entity.TargetCommission;
-import com.cdg.cdg_incentive_backend.targetcommission.mapper.TargetCommissionFilterMapper;
-import com.cdg.cdg_incentive_backend.targetcommission.repositories.TargetCommissionRepository;
-import com.cdg.cdg_incentive_backend.targetcommission.service.TargetCommissionService;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionFilterMapper;
+import com.cdg.cdg_incentive_backend.module.targetcommission.repositories.TargetCommissionRepository;
+import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

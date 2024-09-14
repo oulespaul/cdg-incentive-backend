@@ -1,8 +1,8 @@
-package com.cdg.cdg_incentive_backend.branch.service.impl;
+package com.cdg.cdg_incentive_backend.module.branch.service.impl;
 
-import com.cdg.cdg_incentive_backend.branch.Branch;
-import com.cdg.cdg_incentive_backend.branch.repositories.BranchRepository;
-import com.cdg.cdg_incentive_backend.branch.service.BranchService;
+import com.cdg.cdg_incentive_backend.module.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.repositories.BranchRepository;
+import com.cdg.cdg_incentive_backend.module.branch.service.BranchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

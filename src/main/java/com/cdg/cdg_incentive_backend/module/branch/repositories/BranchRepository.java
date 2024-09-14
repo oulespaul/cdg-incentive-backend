@@ -1,6 +1,6 @@
-package com.cdg.cdg_incentive_backend.branch.repositories;
+package com.cdg.cdg_incentive_backend.module.branch.repositories;
 
-import com.cdg.cdg_incentive_backend.branch.Branch;
+import com.cdg.cdg_incentive_backend.module.branch.Branch;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BranchRepository extends JpaRepository<Branch, Integer> {
