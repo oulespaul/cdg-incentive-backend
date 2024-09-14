@@ -1,7 +1,7 @@
 package com.cdg.cdg_incentive_backend.targetcommission.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
-import com.cdg.cdg_incentive_backend.store.Store;
+import com.cdg.cdg_incentive_backend.branch.Branch;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +31,7 @@ public class TargetCommission extends BaseEntity {
     @Column(name = "acutal_ly_id")
     private BigDecimal actualLyId;
     @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
 }
 

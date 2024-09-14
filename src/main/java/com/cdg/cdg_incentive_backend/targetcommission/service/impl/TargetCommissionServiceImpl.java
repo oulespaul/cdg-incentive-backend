@@ -24,18 +24,18 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     public Page<TargetCommissionResponse> getAllResponse(
             String year,
             String month,
-            String storeNumber,
-            String storeBU,
-            String storeCode,
+            String branchNumber,
+            String branchBU,
+            String branchCode,
             Integer page,
             Integer pageSize
     ) {
         PageRequest pageRequest = PageRequest.of(page, pageSize);
         return targetCommissionRepository.findAllResponse(year,
                 month,
-                storeNumber,
-                storeBU,
-                storeCode,
+                branchNumber,
+                branchBU,
+                branchCode,
                 pageRequest);
     }
 
@@ -57,7 +57,7 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctStoreNumber() {
-        return targetCommissionRepository.findDistinctStoreNumber();
+    public List<TargetCommissionFilterResponse> getDistinctBranchNumber() {
+        return targetCommissionRepository.findDistinctBranchNumber();
     }
 }

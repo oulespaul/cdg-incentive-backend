@@ -16,27 +16,27 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
                 tc.id as id,
                 tc.month as month,
                 tc.year as year,
-                s.bu as storeBU,
-                s.storeNumber as storeNumber,
-                s.name as storeName,
-                s.storeCode as storeCode,
+                s.bu as branchBU,
+                s.branchNumber as branchNumber,
+                s.name as branchName,
+                s.branchCode as branchCode,
                 tc.comTgTotal as targetCommission
             )
             FROM TargetCommission tc
-            JOIN tc.store s
+            JOIN tc.branch s
             WHERE (:year IS NULL OR tc.year = :year)
             AND (:month IS NULL OR tc.month = :month)
-            AND (:storeNumber IS NULL OR s.storeNumber = :storeNumber)
-            AND (:storeBU IS NULL OR s.bu LIKE %:storeBU%)
-            AND (:storeCode IS NULL OR s.storeCode LIKE %:storeCode%)
+            AND (:branchNumber IS NULL OR s.branchNumber = :branchNumber)
+            AND (:branchBU IS NULL OR s.bu LIKE %:branchBU%)
+            AND (:branchCode IS NULL OR s.branchCode LIKE %:branchCode%)
             ORDER BY tc.createdAt DESC
             """)
     Page<TargetCommissionResponse> findAllResponse(
             String year,
             String month,
-            String storeNumber,
-            String storeBU,
-            String storeCode,
+            String branchNumber,
+            String branchBU,
+            String branchCode,
             Pageable pageable
     );
 
@@ -48,10 +48,10 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
 
     @Query("""
             SELECT DISTINCT new com.cdg.cdg_incentive_backend.targetcommission.dto.response.TargetCommissionFilterResponse(
-            CONCAT(s.storeNumber, ' - ', s.name) AS label,
-            s.storeNumber AS value
+            CONCAT(s.branchNumber, ' - ', s.name) AS label,
+            s.branchNumber AS value
             )
-            FROM TargetCommission tc JOIN tc.store s
+            FROM TargetCommission tc JOIN tc.branch s
             """)
-    List<TargetCommissionFilterResponse> findDistinctStoreNumber();
+    List<TargetCommissionFilterResponse> findDistinctBranchNumber();
 }

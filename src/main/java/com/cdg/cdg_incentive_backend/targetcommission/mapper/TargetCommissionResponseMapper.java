@@ -11,10 +11,10 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TargetCommissionResponseMapper {
     @Mapping(target = "targetCommission", source = "comTgTotal")
-    @Mapping(target = "storeCode", source = "store.storeCode")
-    @Mapping(target = "storeName", source = "store.name")
-    @Mapping(target = "storeNumber", source = "store.storeNumber")
-    @Mapping(target = "storeBU", source = "store.bu")
+    @Mapping(target = "branchCode", source = "branch.branchCode")
+    @Mapping(target = "branchName", source = "branch.name")
+    @Mapping(target = "branchNumber", source = "branch.branchNumber")
+    @Mapping(target = "branchBU", source = "branch.bu")
     TargetCommissionResponse fromEntityToDTO(TargetCommission targetCommission);
 
     List<TargetCommissionResponse> fromEntityToDTOList(List<TargetCommission> targetCommissionList);

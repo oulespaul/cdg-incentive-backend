@@ -1,8 +1,8 @@
 package com.cdg.cdg_incentive_backend.targetcommission.service.impl;
 
+import com.cdg.cdg_incentive_backend.branch.Branch;
 import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
-import com.cdg.cdg_incentive_backend.store.Store;
-import com.cdg.cdg_incentive_backend.store.service.StoreService;
+import com.cdg.cdg_incentive_backend.branch.service.BranchService;
 import com.cdg.cdg_incentive_backend.targetcommission.entity.TargetCommission;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
@@ -15,17 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class TargetCommissionExcelService extends AbstractExcelService<TargetCommission> {
-    private final StoreService storeService;
+    private final BranchService branchService;
 
     @Override
     protected TargetCommission parseRow(Row row) {
-        List<Store> storeList = storeService.getAll();
-        Store store = getStoreByStoreNumber(storeList, getCellStringValue(row.getCell(2)));
+        List<Branch> branchList = branchService.getAll();
+        Branch branch = getBranchByBranchNumber(branchList, getCellStringValue(row.getCell(2)));
 
         TargetCommission dto = new TargetCommission();
         dto.setYear(getCellStringValue(row.getCell(0)));
         dto.setMonth(getCellStringValue(row.getCell(1)));
-        dto.setStore(store);
+        dto.setBranch(branch);
         dto.setComTgTotal(getCellBigDecimalValue(row.getCell(5)));
         dto.setActualLyTotal(getCellBigDecimalValue(row.getCell(6)));
         dto.setActualLyId(getCellBigDecimalValue(row.getCell(7)));
@@ -53,10 +53,10 @@ public class TargetCommissionExcelService extends AbstractExcelService<TargetCom
         return errors;
     }
 
-    private Store getStoreByStoreNumber(List<Store> storeList, String storeNumber) {
-        return storeList.stream()
-                .filter(store -> store.getStoreNumber().equals(storeNumber))
+    private Branch getBranchByBranchNumber(List<Branch> branchList, String branchNumber) {
+        return branchList.stream()
+                .filter(branch -> branch.getBranchNumber().equals(branchNumber))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Store not found"));
+                .orElseThrow(() -> new RuntimeException("Branch not found"));
     }
 }

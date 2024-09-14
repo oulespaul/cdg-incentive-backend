@@ -13,9 +13,9 @@ public class TargetCommissionResponse {
     private Integer id;
     private String month;
     private String year;
-    private String storeBU;
-    private String storeNumber;
-    private String storeName;
-    private String storeCode;
+    private String branchBU;
+    private String branchNumber;
+    private String branchName;
+    private String branchCode;
     private BigDecimal targetCommission;
 }

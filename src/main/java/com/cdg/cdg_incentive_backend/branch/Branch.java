@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.store;
+package com.cdg.cdg_incentive_backend.branch;
 
 import com.cdg.cdg_incentive_backend.entity.AppUser;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
@@ -17,9 +17,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "store")
+@Table(name = "branch")
 @EqualsAndHashCode(callSuper = true)
-public class Store extends BaseEntity {
+public class Branch extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,13 +35,13 @@ public class Store extends BaseEntity {
     private String regionName;
     @Column(name = "type")
     private String type;
-    @Column(name = "store_no")
-    private String storeNumber;
-    @Column(name = "store_code")
-    private String storeCode;
-    @OneToMany(mappedBy = "store")
+    @Column(name = "branch_no")
+    private String branchNumber;
+    @Column(name = "branch_code")
+    private String branchCode;
+    @OneToMany(mappedBy = "branch")
     private Set<AppUser> appUsers = new HashSet<>();
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "branch")
     @JsonIgnore
     private Set<TargetCommission> targetCommissions = new HashSet<>();
 }

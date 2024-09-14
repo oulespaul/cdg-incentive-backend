@@ -31,18 +31,18 @@ public class TargetCommissionController {
     public ResponseEntity<Page<TargetCommissionResponse>> getTargetCommission(
             @RequestParam(value = "year", required = false) String year,
             @RequestParam(value = "month", required = false) String month,
-            @RequestParam(value = "storeNumber", required = false) String storeNumber,
-            @RequestParam(value = "storeBU", required = false) String storeBU,
-            @RequestParam(value = "storeCode", required = false) String storeCode,
+            @RequestParam(value = "branchNumber", required = false) String branchNumber,
+            @RequestParam(value = "branchBU", required = false) String branchBU,
+            @RequestParam(value = "branchCode", required = false) String branchCode,
             @RequestParam("page") Integer page,
             @RequestParam("pageSize") Integer pageSize
     ) {
         return ResponseEntity.ok(targetCommissionService.getAllResponse(
                 year,
                 month,
-                storeNumber,
-                storeBU,
-                storeCode,
+                branchNumber,
+                branchBU,
+                branchCode,
                 page,
                 pageSize));
     }
@@ -57,9 +57,9 @@ public class TargetCommissionController {
         return ResponseEntity.ok(targetCommissionService.getDistinctMonth());
     }
 
-    @GetMapping("/filter/store")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterStoreNumberTargetCommission() {
-        return ResponseEntity.ok(targetCommissionService.getDistinctStoreNumber());
+    @GetMapping("/filter/branch")
+    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterBranchNumberTargetCommission() {
+        return ResponseEntity.ok(targetCommissionService.getDistinctBranchNumber());
     }
 
     @PostMapping("/upload/validate")

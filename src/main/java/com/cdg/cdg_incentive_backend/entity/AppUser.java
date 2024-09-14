@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.entity;
 
-import com.cdg.cdg_incentive_backend.store.Store;
+import com.cdg.cdg_incentive_backend.branch.Branch;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +17,6 @@ import java.util.Set;
 @Table(name = "app_user")
 @EqualsAndHashCode(callSuper = true)
 public class AppUser extends BaseEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -35,8 +34,8 @@ public class AppUser extends BaseEntity {
     private String lastname;
 
     @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
 
     @ManyToMany
     @JoinTable(

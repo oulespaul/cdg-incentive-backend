@@ -11,9 +11,9 @@ public interface TargetCommissionService {
     Page<TargetCommissionResponse> getAllResponse(
             String year,
             String month,
-            String storeNumber,
-            String storeBU,
-            String storeCode,
+            String branchNumber,
+            String branchBU,
+            String branchCode,
             Integer page,
             Integer pageSize
     );
@@ -24,5 +24,5 @@ public interface TargetCommissionService {
 
     List<TargetCommissionFilterResponse> getDistinctMonth();
 
-    List<TargetCommissionFilterResponse> getDistinctStoreNumber();
+    List<TargetCommissionFilterResponse> getDistinctBranchNumber();
 }
