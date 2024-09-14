@@ -1,7 +1,9 @@
 package com.cdg.cdg_incentive_backend.module.brand.service.impl;
 
 import com.cdg.cdg_incentive_backend.module.brand.dto.request.ImportBrandRequest;
+import com.cdg.cdg_incentive_backend.module.brand.dto.response.BrandResponse;
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
+import com.cdg.cdg_incentive_backend.module.brand.mapper.BrandResponseMapper;
 import com.cdg.cdg_incentive_backend.module.brand.repository.BrandRepository;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
 import com.cdg.cdg_incentive_backend.module.department.entity.Department;
@@ -20,6 +22,7 @@ public class BrandServiceImpl implements BrandService {
     private final BrandRepository brandRepository;
     private final DepartmentService departmentService;
     private final SubDepartmentService subDepartmentService;
+    private final BrandResponseMapper brandResponseMapper;
 
     @Override
     public void importBrand(List<ImportBrandRequest> importBrandRequestList) {
@@ -43,6 +46,12 @@ public class BrandServiceImpl implements BrandService {
         }
 
         brandRepository.saveAll(brandList);
+    }
+
+    @Override
+    public List<BrandResponse> getAllBrand() {
+        List<Brand> brandList = brandRepository.findAll();
+        return brandResponseMapper.fromEntityToDtoList(brandList);
     }
 
     private Department findDepartmentByCode(List<Department> departmentList, String departmentCode) {

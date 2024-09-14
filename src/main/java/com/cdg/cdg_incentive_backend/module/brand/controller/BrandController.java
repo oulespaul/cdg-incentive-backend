@@ -1,13 +1,11 @@
 package com.cdg.cdg_incentive_backend.module.brand.controller;
 
 import com.cdg.cdg_incentive_backend.module.brand.dto.request.ImportBrandRequest;
+import com.cdg.cdg_incentive_backend.module.brand.dto.response.BrandResponse;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,10 @@ public class BrandController {
     ) {
         brandService.importBrand(importBrandRequestList);
         return ResponseEntity.ok(true);
+    }
+
+    @GetMapping
+    ResponseEntity<List<BrandResponse>> getAllBrand() {
+        return ResponseEntity.ok(brandService.getAllBrand());
     }
 }
