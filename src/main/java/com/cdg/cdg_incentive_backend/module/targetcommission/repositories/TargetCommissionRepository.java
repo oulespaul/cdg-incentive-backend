@@ -40,11 +40,19 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
             Pageable pageable
     );
 
-    @Query("SELECT DISTINCT tc.year FROM TargetCommission tc")
-    List<String> findDistinctYear();
+    @Query("""
+            SELECT DISTINCT tc.year
+            FROM TargetCommission tc
+            WHERE (:branchId IS NULL OR tc.branch.id = :branchId)
+            """)
+    List<String> findDistinctYearByBranchId(Integer branchId);
 
-    @Query("SELECT DISTINCT tc.month FROM TargetCommission tc")
-    List<String> findDistinctMonth();
+    @Query("""
+            SELECT DISTINCT tc.month
+            FROM TargetCommission tc
+            WHERE (:branchId IS NULL OR tc.branch.id = :branchId)
+            """)
+    List<String> findDistinctMonthByBranchId(Integer branchId);
 
     @Query("""
             SELECT DISTINCT new com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse(

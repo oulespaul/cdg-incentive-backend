@@ -1,11 +1,11 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.controller;
 
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
-import com.cdg.cdg_incentive_backend.module.targetcommission.service.impl.TargetCommissionExcelService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
+import com.cdg.cdg_incentive_backend.module.targetcommission.service.impl.TargetCommissionExcelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -48,13 +48,17 @@ public class TargetCommissionController {
     }
 
     @GetMapping("/filter/year")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterYearTargetCommission() {
-        return ResponseEntity.ok(targetCommissionService.getDistinctYear());
+    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterYearTargetCommission(
+            @RequestParam(value = "branchId", required = false) Integer branchId
+    ) {
+        return ResponseEntity.ok(targetCommissionService.getDistinctYearByBranchId(branchId));
     }
 
     @GetMapping("/filter/month")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterMonthTargetCommission() {
-        return ResponseEntity.ok(targetCommissionService.getDistinctMonth());
+    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterMonthTargetCommission(
+            @RequestParam(value = "branchId", required = false) Integer branchId
+    ) {
+        return ResponseEntity.ok(targetCommissionService.getDistinctMonthByBranchId(branchId));
     }
 
     @GetMapping("/filter/branch")

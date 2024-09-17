@@ -1,11 +1,11 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionFilterMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.repositories.TargetCommissionRepository;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,14 +44,14 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctYear() {
-        List<String> distinctYearList = targetCommissionRepository.findDistinctYear();
+    public List<TargetCommissionFilterResponse> getDistinctYearByBranchId(Integer branchId) {
+        List<String> distinctYearList = targetCommissionRepository.findDistinctYearByBranchId(branchId);
         return targetCommissionFilterMapper.stringValueToDTOList(distinctYearList);
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctMonth() {
-        List<String> distinctMonthList = targetCommissionRepository.findDistinctMonth();
+    public List<TargetCommissionFilterResponse> getDistinctMonthByBranchId(Integer branchId) {
+        List<String> distinctMonthList = targetCommissionRepository.findDistinctMonthByBranchId(branchId);
         return targetCommissionFilterMapper.stringValueToDTOList(distinctMonthList);
     }
 
