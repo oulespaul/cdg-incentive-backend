@@ -5,7 +5,7 @@ import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.Target
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionFilterMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
-import com.cdg.cdg_incentive_backend.module.targetcommission.repositories.TargetCommissionRepository;
+import com.cdg.cdg_incentive_backend.module.targetcommission.repository.TargetCommissionRepository;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,6 +38,12 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
                 branchBU,
                 branchCode,
                 pageRequest);
+    }
+
+    @Override
+    public TargetCommission getOneById(Integer targetCommissionID) {
+        return targetCommissionRepository.findById(targetCommissionID)
+                .orElseThrow(() -> new RuntimeException("TargetCommission not found"));
     }
 
     @Override

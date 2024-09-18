@@ -18,6 +18,8 @@ public interface TargetCommissionService {
             Integer pageSize
     );
 
+    TargetCommission getOneById(Integer targetCommissionID);
+
     void saveAll(List<TargetCommission> targetCommissionList);
 
     List<TargetCommissionFilterResponse> getDistinctYearByBranchId(Integer branchId);

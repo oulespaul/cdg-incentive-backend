@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.module.targetcommission.repositories;
+package com.cdg.cdg_incentive_backend.module.targetcommission.repository;
 
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;

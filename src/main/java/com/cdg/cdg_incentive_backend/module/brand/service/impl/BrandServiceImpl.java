@@ -54,6 +54,11 @@ public class BrandServiceImpl implements BrandService {
         return brandResponseMapper.fromEntityToDtoList(brandList);
     }
 
+    @Override
+    public Brand getById(Integer brandId) {
+        return brandRepository.findById(brandId).orElseThrow(() -> new RuntimeException("Brand Not foundw"));
+    }
+
     private Department findDepartmentByCode(List<Department> departmentList, String departmentCode) {
         return departmentList.stream()
                 .filter(department -> department.getDepartmentCode().equals(departmentCode))
