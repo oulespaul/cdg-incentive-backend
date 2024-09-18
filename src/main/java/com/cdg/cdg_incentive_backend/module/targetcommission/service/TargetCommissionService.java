@@ -25,4 +25,5 @@ public interface TargetCommissionService {
     List<TargetCommissionFilterResponse> getDistinctMonthByBranchId(Integer branchId);
 
     List<TargetCommissionFilterResponse> getDistinctBranchNumber();
+    TargetCommissionResponse getOneByYearAndMonthAndBranchId(String year, String month, Integer branchId);
 }

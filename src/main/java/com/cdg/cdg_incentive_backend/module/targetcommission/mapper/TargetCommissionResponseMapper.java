@@ -11,6 +11,7 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TargetCommissionResponseMapper {
     @Mapping(target = "targetCommission", source = "comTgTotal")
+    @Mapping(target = "branchId", source = "branch.id")
     @Mapping(target = "branchCode", source = "branch.branchCode")
     @Mapping(target = "branchName", source = "branch.name")
     @Mapping(target = "branchNumber", source = "branch.branchNumber")

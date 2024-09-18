@@ -4,6 +4,7 @@ import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.Target
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionFilterMapper;
+import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.repositories.TargetCommissionRepository;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class TargetCommissionServiceImpl implements TargetCommissionService {
     private final TargetCommissionRepository targetCommissionRepository;
     private final TargetCommissionFilterMapper targetCommissionFilterMapper;
+    private final TargetCommissionResponseMapper targetCommissionResponseMapper;
 
     @Override
     public Page<TargetCommissionResponse> getAllResponse(
@@ -58,5 +60,11 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     @Override
     public List<TargetCommissionFilterResponse> getDistinctBranchNumber() {
         return targetCommissionRepository.findDistinctBranchNumber();
+    }
+
+    @Override
+    public TargetCommissionResponse getOneByYearAndMonthAndBranchId(String year, String month, Integer branchId) {
+        TargetCommission targetCommission = targetCommissionRepository.findOneByYearAndMonthAndBranchId(year, month, branchId).orElse(null);
+        return targetCommissionResponseMapper.fromEntityToDTO(targetCommission);
     }
 }

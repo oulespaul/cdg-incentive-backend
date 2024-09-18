@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TargetCommissionRepository extends JpaRepository<TargetCommission, Integer> {
     @Query("""
@@ -62,4 +63,6 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
             FROM TargetCommission tc JOIN tc.branch s
             """)
     List<TargetCommissionFilterResponse> findDistinctBranchNumber();
+
+    Optional<TargetCommission> findOneByYearAndMonthAndBranchId(String year, String month, Integer branchId);
 }

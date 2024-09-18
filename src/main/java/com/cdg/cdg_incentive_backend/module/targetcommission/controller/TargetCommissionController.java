@@ -66,6 +66,15 @@ public class TargetCommissionController {
         return ResponseEntity.ok(targetCommissionService.getDistinctBranchNumber());
     }
 
+    @GetMapping("/detail")
+    public ResponseEntity<TargetCommissionResponse> getOneByCriteria(
+            @RequestParam(value = "year", required = false) String year,
+            @RequestParam(value = "month", required = false) String month,
+            @RequestParam(value = "branchId", required = false) Integer branchId
+    ) {
+        return ResponseEntity.ok(targetCommissionService.getOneByYearAndMonthAndBranchId(year, month, branchId));
+    }
+
     @PostMapping("/upload/validate")
     public ResponseEntity<?> validateFileUpload(@RequestParam("file") MultipartFile file) {
         try {

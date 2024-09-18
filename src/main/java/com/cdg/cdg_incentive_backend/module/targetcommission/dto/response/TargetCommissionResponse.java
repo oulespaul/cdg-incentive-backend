@@ -13,6 +13,7 @@ public class TargetCommissionResponse {
     private Integer id;
     private String month;
     private String year;
+    private Integer branchId;
     private String branchBU;
     private String branchNumber;
     private String branchName;
