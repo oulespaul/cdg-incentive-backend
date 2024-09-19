@@ -3,8 +3,10 @@ package com.cdg.cdg_incentive_backend.module.targetbranch.service.impl;
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
+import com.cdg.cdg_incentive_backend.module.targetbranch.mapper.TargetBranchDetailResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetbranch.mapper.TargetBranchResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetbranch.repository.TargetBranchRepository;
 import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchService;
@@ -15,9 +17,13 @@ import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommis
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -28,6 +34,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     private final TargetInHouseService targetInHouseService;
     private final BrandService brandService;
     private final TargetBranchResponseMapper targetBranchResponseMapper;
+    private final TargetBranchDetailResponseMapper targetBranchDetailResponseMapper;
 
     @Transactional
     @Override
@@ -37,7 +44,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
         // Find for check existing to re-use entity
         TargetBranch targetBranch = targetBranchRepository.findByTargetCommissionId(targetCommission.getId())
                 .orElseGet(() -> TargetBranch.builder()
-                        .status("NEW")
+                        .status("New")
                         .requestedAt(LocalDateTime.now())
                         .targetCommission(targetCommission)
                         .build());
@@ -64,5 +71,14 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     public TargetBranchResponse getOneByTargetCommissionId(Integer targetCommissionId) {
         Optional<TargetBranch> targetBranchOptional = targetBranchRepository.findByTargetCommissionId(targetCommissionId);
         return targetBranchOptional.map(targetBranchResponseMapper::fromEntityToDto).orElse(null);
+    }
+
+    @Override
+    public Page<TargetBranchDetailResponse> getAllDetail(String year, String month, Pageable pageable) {
+        Page<TargetBranch> targetBranchPage = targetBranchRepository.findAllDetail(year, month, pageable);
+        List<TargetBranchDetailResponse> targetBranchDetailResponseList = targetBranchDetailResponseMapper.fromEntityToDtoList(
+                targetBranchPage.getContent()
+        );
+        return new PageImpl<>(targetBranchDetailResponseList, pageable, targetBranchPage.getTotalElements());
     }
 }
