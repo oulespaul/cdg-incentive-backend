@@ -40,6 +40,7 @@ public class Branch extends BaseEntity {
     @Column(name = "branch_code")
     private String branchCode;
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private Set<AppUser> appUsers = new HashSet<>();
     @OneToMany(mappedBy = "branch")
     @JsonIgnore

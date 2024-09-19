@@ -13,13 +13,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "brand")
-@EqualsAndHashCode(callSuper = true)
 public class Brand extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +30,10 @@ public class Brand extends BaseEntity {
     private String creditConsign;
     @Column(name = "pc_type")
     private String pcType;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_department_id")
     private SubDepartment subDepartment;
     @OneToMany(mappedBy = "brand")

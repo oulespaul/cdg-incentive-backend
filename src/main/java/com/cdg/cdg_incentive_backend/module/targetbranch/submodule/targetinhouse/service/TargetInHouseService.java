@@ -4,4 +4,6 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse
 
 public interface TargetInHouseService {
     void save(TargetInHouse targetInHouse);
+
+    void deleteByTargetBranchId(Integer targetBranchId);
 }

@@ -3,6 +3,7 @@ package com.cdg.cdg_incentive_backend.module.targetcommission.entity;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,6 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table(name = "target_commission")
-@EqualsAndHashCode(callSuper = true)
 public class TargetCommission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

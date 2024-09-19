@@ -3,6 +3,8 @@ package com.cdg.cdg_incentive_backend.module.targetbranch.entity;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,13 +14,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "target_branch")
-@EqualsAndHashCode(callSuper = true)
 public class TargetBranch extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
