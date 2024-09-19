@@ -11,6 +11,7 @@ import com.cdg.cdg_incentive_backend.module.department.service.DepartmentService
 import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.cdg.cdg_incentive_backend.module.subdepartment.service.SubDepartmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -50,7 +51,8 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public List<BrandResponse> getAllBrand() {
-        List<Brand> brandList = brandRepository.findAll();
+        Sort sort = Sort.by(Sort.Direction.ASC, "brandName");
+        List<Brand> brandList = brandRepository.findAll(sort);
         return brandResponseMapper.fromEntityToDtoList(brandList);
     }
 

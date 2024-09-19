@@ -15,4 +15,5 @@ public class TargetInHouseResponse {
     private String brandName;
     private String groupBrand;
     private BigDecimal goalBrand;
+    private BigDecimal actualSalesIDLastYear;
 }

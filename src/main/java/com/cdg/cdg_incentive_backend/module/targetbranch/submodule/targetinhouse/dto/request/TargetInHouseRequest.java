@@ -9,4 +9,5 @@ public class TargetInHouseRequest {
     Integer brandId;
     String groupBrand;
     BigDecimal goalBrand;
+    BigDecimal actualSalesIDLastYear;
 }

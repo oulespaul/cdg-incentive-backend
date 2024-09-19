@@ -23,6 +23,8 @@ public class TargetInHouse extends BaseEntity {
     private String groupBrand;
     @Column(name = "goal_brand")
     private BigDecimal goalBrand;
+    @Column(name = "actual_sales_id_last_year")
+    private BigDecimal actualSalesIDLastYear;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "target_branch_id")
     private TargetBranch targetBranch;

@@ -53,6 +53,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
                     .brand(brand)
                     .groupBrand(targetInHouseRequest.getGroupBrand())
                     .goalBrand(targetInHouseRequest.getGoalBrand())
+                    .actualSalesIDLastYear(targetInHouseRequest.getActualSalesIDLastYear())
                     .build();
 
             targetInHouseService.save(targetInHouse);
