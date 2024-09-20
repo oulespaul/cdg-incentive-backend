@@ -1,8 +1,8 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.dto.response;
 
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.request.response.TargetDeptResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.dto.response.TargetInHouseResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
-import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -23,4 +23,5 @@ public class TargetBranchResponse {
     private String calculatedBy;
     private TargetCommissionResponse targetCommission;
     private Set<TargetInHouseResponse> targetInHouseList;
+    private Set<TargetDeptResponse> targetDeptList;
 }

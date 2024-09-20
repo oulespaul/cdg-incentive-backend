@@ -3,8 +3,7 @@ package com.cdg.cdg_incentive_backend.module.targetbranch.entity;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,4 +47,6 @@ public class TargetBranch extends BaseEntity {
     private TargetCommission targetCommission;
     @OneToMany(mappedBy = "targetBranch")
     private Set<TargetInHouse> targetInHouses = new HashSet<>();
+    @OneToMany(mappedBy = "targetBranch")
+    private Set<TargetDept> targetDept = new HashSet<>();
 }

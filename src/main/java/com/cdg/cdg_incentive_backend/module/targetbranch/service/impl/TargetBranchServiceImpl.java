@@ -2,6 +2,8 @@ package com.cdg.cdg_incentive_backend.module.targetbranch.service.impl;
 
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
+import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
+import com.cdg.cdg_incentive_backend.module.subdepartment.service.SubDepartmentService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
@@ -10,6 +12,9 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.mapper.TargetBranchDeta
 import com.cdg.cdg_incentive_backend.module.targetbranch.mapper.TargetBranchResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetbranch.repository.TargetBranchRepository;
 import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchService;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.request.TargetDeptRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.service.TargetDeptService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.dto.request.TargetInHouseRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.service.TargetInHouseService;
@@ -23,6 +28,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +41,8 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     private final BrandService brandService;
     private final TargetBranchResponseMapper targetBranchResponseMapper;
     private final TargetBranchDetailResponseMapper targetBranchDetailResponseMapper;
+    private final TargetDeptService targetDeptService;
+    private final SubDepartmentService subDepartmentService;
 
     @Transactional
     @Override
@@ -64,6 +72,25 @@ public class TargetBranchServiceImpl implements TargetBranchService {
                     .build();
 
             targetInHouseService.save(targetInHouse);
+        }
+
+        // Clear target in-dept by target branch for upsert new target in-dept list
+        targetDeptService.deleteByTargetBranchId(targetBranch.getId());
+        for (TargetDeptRequest targetDeptRequest : request.getTargetDeptList()) {
+            TargetDept targetDept = TargetDept.builder()
+                    .targetBranch(targetBranch)
+                    .groupDept(targetDeptRequest.getGroupDept())
+                    .goalDept(targetDeptRequest.getGoalDept())
+                    .actualSalesIDLastYear(targetDeptRequest.getActualSalesIDLastYear())
+                    .deptPool(new HashSet<>())
+                    .build();
+
+            for (Integer subDepartmentId : targetDeptRequest.getSubDepartmentPool()) {
+                SubDepartment subDepartment = subDepartmentService.getOneById(subDepartmentId);
+                targetDept.addSubDepartment(subDepartment);
+            }
+
+            targetDeptService.save(targetDept);
         }
     }
 
