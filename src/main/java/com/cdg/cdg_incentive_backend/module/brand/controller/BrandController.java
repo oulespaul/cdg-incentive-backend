@@ -2,6 +2,7 @@ package com.cdg.cdg_incentive_backend.module.brand.controller;
 
 import com.cdg.cdg_incentive_backend.module.brand.dto.request.ImportBrandRequest;
 import com.cdg.cdg_incentive_backend.module.brand.dto.response.BrandResponse;
+import com.cdg.cdg_incentive_backend.module.brand.service.BrandDataService;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,13 @@ import java.util.List;
 @RequestMapping("/api/brand")
 public class BrandController {
     private final BrandService brandService;
+    private final BrandDataService brandDataService;
 
     @PostMapping("/import-data")
     ResponseEntity<Boolean> importBrandData(
             @RequestBody List<ImportBrandRequest> importBrandRequestList
     ) {
-        brandService.importBrand(importBrandRequestList);
+        brandDataService.importBrand(importBrandRequestList);
         return ResponseEntity.ok(true);
     }
 

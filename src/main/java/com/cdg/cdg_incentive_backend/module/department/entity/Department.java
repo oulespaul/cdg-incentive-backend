@@ -2,6 +2,7 @@ package com.cdg.cdg_incentive_backend.module.department.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
+import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,4 +28,7 @@ public class Department extends BaseEntity {
     @OneToMany(mappedBy = "department")
     @JsonIgnore
     private Set<Brand> brands = new HashSet<>();
+    @OneToMany(mappedBy = "department")
+    @JsonIgnore
+    private Set<SubDepartment> subDepartments = new HashSet<>();
 }

@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface SubDepartmentService {
     List<SubDepartment> getAll();
+
     List<SubDepartmentResponse> getAllResponse();
+
     SubDepartment getOneById(Integer id);
 }
