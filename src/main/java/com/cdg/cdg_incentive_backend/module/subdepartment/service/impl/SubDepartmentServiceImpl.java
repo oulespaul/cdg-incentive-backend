@@ -23,7 +23,7 @@ public class SubDepartmentServiceImpl implements SubDepartmentService {
 
     @Override
     public List<SubDepartmentResponse> getAllResponse() {
-        return subDepartmentMapper.fromEntityToDTOList(subDepartmentRepository.findAll());
+        return subDepartmentMapper.fromEntityToDTOList(getAll());
     }
 
     @Override
