@@ -18,8 +18,10 @@ public class SubDepartmentController {
     private final SubDepartmentDataService subDepartmentDataService;
 
     @GetMapping
-    List<SubDepartmentResponse> getAll() {
-        return subDepartmentService.getAllResponse();
+    List<SubDepartmentResponse> getAll(
+            @RequestParam(value = "department_id", required = false) Integer departmentId
+    ) {
+        return subDepartmentService.getAllResponse(departmentId);
     }
 
     @PostMapping("/import-data")
