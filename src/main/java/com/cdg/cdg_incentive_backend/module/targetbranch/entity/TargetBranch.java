@@ -1,9 +1,10 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.entity;
 
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
-import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
-import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.entity.TargetSMM;
+import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -49,4 +50,6 @@ public class TargetBranch extends BaseEntity {
     private Set<TargetInHouse> targetInHouses = new HashSet<>();
     @OneToMany(mappedBy = "targetBranch")
     private Set<TargetDept> targetDept = new HashSet<>();
+    @OneToMany(mappedBy = "targetBranch")
+    private Set<TargetSMM> targetSMMs = new HashSet<>();
 }

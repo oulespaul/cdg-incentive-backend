@@ -106,7 +106,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
 
         // Clear target smm-dsm by target branch for upsert new target smm-dsm list
         targetSMMService.deleteByTargetBranchId(targetBranch.getId());
-        for (TargetSMMDSMRequest targetSMMDSMRequest : request.getTargetSMMDSMRequestList()) {
+        for (TargetSMMDSMRequest targetSMMDSMRequest : request.getTargetSMMDSMList()) {
             TargetSMM targetSMM = TargetSMM.builder()
                     .smmId(targetSMMDSMRequest.getSmmId())
                     .targetBranch(targetBranch)

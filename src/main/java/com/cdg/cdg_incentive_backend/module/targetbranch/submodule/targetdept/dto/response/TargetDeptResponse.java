@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.request.response;
+package com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.response;
 
 import com.cdg.cdg_incentive_backend.module.subdepartment.dto.response.SubDepartmentResponse;
 import lombok.Data;

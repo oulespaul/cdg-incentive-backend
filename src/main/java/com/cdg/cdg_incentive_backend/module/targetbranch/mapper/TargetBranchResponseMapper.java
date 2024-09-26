@@ -4,10 +4,12 @@ import com.cdg.cdg_incentive_backend.module.subdepartment.dto.response.SubDepart
 import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
-import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.request.response.TargetDeptResponse;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.response.TargetDeptResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.dto.response.TargetInHouseResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.dto.response.TargetSMMDSMResponse;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.entity.TargetSMM;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import org.mapstruct.Mapper;
@@ -16,6 +18,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TargetBranchResponseMapper {
+    @Mapping(source = "targetSMMs", target = "targetSMMDSMList")
     @Mapping(source = "targetDept", target = "targetDeptList")
     @Mapping(source = "targetInHouses", target = "targetInHouseList")
     @Mapping(source = "targetCommission", target = "targetCommission")
@@ -39,6 +42,9 @@ public interface TargetBranchResponseMapper {
 
     @Mapping(target = "subDepartmentPool", source = "deptPool")
     TargetDeptResponse toTargetDeptDto(TargetDept targetDept);
+
+    @Mapping(target = "targetDSMList", source = "targetDSMs")
+    TargetSMMDSMResponse targetSMMDSMResponseDto(TargetSMM targetSMM);
 
     SubDepartmentResponse toSubDepartmentDto(SubDepartment subDepartment);
 }

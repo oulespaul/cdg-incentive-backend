@@ -13,5 +13,5 @@ public class CreateTargetBranchRequest {
     Integer branchId;
     List<TargetInHouseRequest> targetInHouseList;
     List<TargetDeptRequest> targetDeptList;
-    List<TargetSMMDSMRequest> targetSMMDSMRequestList;
+    List<TargetSMMDSMRequest> targetSMMDSMList;
 }
