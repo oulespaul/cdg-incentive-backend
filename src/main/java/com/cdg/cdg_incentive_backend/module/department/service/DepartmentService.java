@@ -8,4 +8,5 @@ import java.util.List;
 public interface DepartmentService {
     List<Department> getAll();
     List<DepartmentResponse> getAllResponse();
+    Department getById(Integer id);
 }

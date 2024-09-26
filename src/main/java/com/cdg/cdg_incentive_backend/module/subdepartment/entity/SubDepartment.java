@@ -4,6 +4,7 @@ import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
 import com.cdg.cdg_incentive_backend.module.department.entity.Department;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.entity.TargetDSM;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,4 +36,7 @@ public class SubDepartment extends BaseEntity {
     @ManyToMany(mappedBy = "deptPool", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     private Set<TargetDept> targetDept = new HashSet<>();
+    @OneToMany(mappedBy = "subDepartment")
+    @JsonIgnore
+    private Set<TargetDSM> targetDSMs = new HashSet<>();
 }

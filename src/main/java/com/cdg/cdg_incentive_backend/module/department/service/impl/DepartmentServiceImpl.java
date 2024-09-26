@@ -25,4 +25,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<DepartmentResponse> getAllResponse() {
         return departmentMapper.fromEntityToDTOList(getAll());
     }
+
+    @Override
+    public Department getById(Integer id) {
+        return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found"));
+    }
 }

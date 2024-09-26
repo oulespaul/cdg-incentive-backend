@@ -2,6 +2,8 @@ package com.cdg.cdg_incentive_backend.module.targetbranch.service.impl;
 
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
 import com.cdg.cdg_incentive_backend.module.brand.service.BrandService;
+import com.cdg.cdg_incentive_backend.module.department.entity.Department;
+import com.cdg.cdg_incentive_backend.module.department.service.DepartmentService;
 import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.cdg.cdg_incentive_backend.module.subdepartment.service.SubDepartmentService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
@@ -18,6 +20,12 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.se
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.dto.request.TargetInHouseRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.service.TargetInHouseService;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.dto.request.TargetDSMRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.dto.request.TargetSMMDSMRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.entity.TargetDSM;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.entity.TargetSMM;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.service.TargetDSMService;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.service.TargetSMMService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
 import jakarta.transaction.Transactional;
@@ -43,6 +51,9 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     private final TargetBranchDetailResponseMapper targetBranchDetailResponseMapper;
     private final TargetDeptService targetDeptService;
     private final SubDepartmentService subDepartmentService;
+    private final TargetSMMService targetSMMService;
+    private final DepartmentService departmentService;
+    private final TargetDSMService targetDSMService;
 
     @Transactional
     @Override
@@ -91,6 +102,31 @@ public class TargetBranchServiceImpl implements TargetBranchService {
             }
 
             targetDeptService.save(targetDept);
+        }
+
+        // Clear target smm-dsm by target branch for upsert new target smm-dsm list
+        targetSMMService.deleteByTargetBranchId(targetBranch.getId());
+        for (TargetSMMDSMRequest targetSMMDSMRequest : request.getTargetSMMDSMRequestList()) {
+            TargetSMM targetSMM = TargetSMM.builder()
+                    .smmId(targetSMMDSMRequest.getSmmId())
+                    .targetBranch(targetBranch)
+                    .build();
+            TargetSMM targetSMMEntitySaved = targetSMMService.save(targetSMM);
+            for (TargetDSMRequest targetDSMRequest : targetSMMDSMRequest.getTargetDSMList()) {
+                Department department = departmentService.getById(targetDSMRequest.getDepartmentId());
+                SubDepartment subDepartment = subDepartmentService.getOneById(targetDSMRequest.getSubDepartmentId());
+                TargetDSM targetDSM = TargetDSM.builder()
+                        .dsmId(targetDSMRequest.getDsmId())
+                        .targetSMM(targetSMMEntitySaved)
+                        .department(department)
+                        .subDepartment(subDepartment)
+                        .goalDept(targetDSMRequest.getGoalDept())
+                        .actualSalesLastYear(targetDSMRequest.getActualSalesLastYear())
+                        .goalId(targetDSMRequest.getGoalId())
+                        .actualSalesIDLastYear(targetDSMRequest.getActualSalesIDLastYear())
+                        .build();
+                targetDSMService.save(targetDSM);
+            }
         }
     }
 
