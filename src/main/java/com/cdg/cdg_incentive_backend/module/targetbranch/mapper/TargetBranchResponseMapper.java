@@ -18,6 +18,7 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface TargetBranchResponseMapper {
+    @Mapping(source = "targetDMMs", target = "targetDMMList")
     @Mapping(source = "targetSMMs", target = "targetSMMDSMList")
     @Mapping(source = "targetDept", target = "targetDeptList")
     @Mapping(source = "targetInHouses", target = "targetInHouseList")

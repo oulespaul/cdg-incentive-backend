@@ -17,6 +17,9 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchSer
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.dto.request.TargetDeptRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.service.TargetDeptService;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdmm.dto.request.TargetDMMRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdmm.entity.TargetDMM;
+import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdmm.service.TargetDMMService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.dto.request.TargetInHouseRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.service.TargetInHouseService;
@@ -54,6 +57,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     private final TargetSMMService targetSMMService;
     private final DepartmentService departmentService;
     private final TargetDSMService targetDSMService;
+    private final TargetDMMService targetDMMService;
 
     @Transactional
     @Override
@@ -127,6 +131,24 @@ public class TargetBranchServiceImpl implements TargetBranchService {
                         .build();
                 targetDSMService.save(targetDSM);
             }
+        }
+
+        // Clear target dmm by target branch for upsert new target dmm list
+        targetDMMService.deleteByTargetBranchId(targetBranch.getId());
+        for (TargetDMMRequest targetDMMRequest : request.getTargetDMMList()) {
+            Department department = departmentService.getById(targetDMMRequest.getDepartmentId());
+            SubDepartment subDepartment = subDepartmentService.getOneById(targetDMMRequest.getSubDepartmentId());
+            TargetDMM targetDMM = TargetDMM.builder()
+                    .dmmId(targetDMMRequest.getDmmId())
+                    .targetBranch(targetBranch)
+                    .department(department)
+                    .subDepartment(subDepartment)
+                    .goalDept(targetDMMRequest.getGoalDept())
+                    .actualSalesLastYear(targetDMMRequest.getActualSalesLastYear())
+                    .goalId(targetDMMRequest.getGoalId())
+                    .actualSalesIDLastYear(targetDMMRequest.getActualSalesIDLastYear())
+                    .build();
+            targetDMMService.save(targetDMM);
         }
     }
 
