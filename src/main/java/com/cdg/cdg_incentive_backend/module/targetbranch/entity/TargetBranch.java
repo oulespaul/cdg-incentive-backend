@@ -8,6 +8,8 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetsmmdsm.
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -47,12 +49,16 @@ public class TargetBranch extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "target_commission_id", referencedColumnName = "id")
     private TargetCommission targetCommission;
-    @OneToMany(mappedBy = "targetBranch")
+    @OneToMany(mappedBy = "targetBranch", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TargetInHouse> targetInHouses = new HashSet<>();
-    @OneToMany(mappedBy = "targetBranch")
+    @OneToMany(mappedBy = "targetBranch", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TargetDept> targetDept = new HashSet<>();
-    @OneToMany(mappedBy = "targetBranch")
+    @OneToMany(mappedBy = "targetBranch", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TargetSMM> targetSMMs = new HashSet<>();
-    @OneToMany(mappedBy = "targetBranch")
+    @OneToMany(mappedBy = "targetBranch", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<TargetDMM> targetDMMs = new HashSet<>();
 }

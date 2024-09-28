@@ -4,6 +4,7 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTarge
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchService;
+import com.oracle.svm.core.annotate.Delete;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,5 +43,13 @@ public class TargetBranchController {
             @PathVariable("target-commission-id") Integer targetCommissionId
     ) {
         return ResponseEntity.ok(targetBranchService.getOneByTargetCommissionId(targetCommissionId));
+    }
+
+    @DeleteMapping("{target-branch-id}")
+    ResponseEntity<String> deleteById(
+            @PathVariable("target-branch-id") Integer targetBranchId
+    ) {
+        targetBranchService.deleteById(targetBranchId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Target Branch deleted successfully.");
     }
 }

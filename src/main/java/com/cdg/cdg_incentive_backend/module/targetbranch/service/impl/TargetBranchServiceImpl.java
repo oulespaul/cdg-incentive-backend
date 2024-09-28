@@ -164,4 +164,11 @@ public class TargetBranchServiceImpl implements TargetBranchService {
         );
         return new PageImpl<>(targetBranchDetailResponseList, pageable, targetBranchPage.getTotalElements());
     }
+
+    @Override
+    public void deleteById(Integer targetBranchId) {
+        // Because it's m-n relation, so have to delete first
+        targetDeptService.deleteByTargetBranchId(targetBranchId);
+        targetBranchRepository.deleteById(targetBranchId);
+    }
 }

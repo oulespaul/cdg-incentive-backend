@@ -1,9 +1,11 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.repository;
 
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
@@ -26,4 +28,9 @@ public interface TargetBranchRepository extends JpaRepository<TargetBranch, Inte
             tb.status DESC
             """)
     Page<TargetBranch> findAllDetail(String year, String month, Pageable pageable);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM TargetBranch tb WHERE tb.id = :targetBranchId")
+    void deleteById(Integer targetBranchId);
 }
