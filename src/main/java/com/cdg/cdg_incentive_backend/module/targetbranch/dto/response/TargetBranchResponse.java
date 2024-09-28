@@ -23,6 +23,8 @@ public class TargetBranchResponse {
     private String rejectedReason;
     private LocalDateTime calculatedAt;
     private String calculatedBy;
+    private LocalDateTime createdAt;
+    private String createdBy;
     private TargetCommissionResponse targetCommission;
     private Set<TargetInHouseResponse> targetInHouseList;
     private Set<TargetDeptResponse> targetDeptList;

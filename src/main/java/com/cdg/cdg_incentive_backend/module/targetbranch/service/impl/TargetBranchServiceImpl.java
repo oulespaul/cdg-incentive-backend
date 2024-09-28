@@ -38,7 +38,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -63,12 +62,11 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     @Override
     public void createTargetBranch(CreateTargetBranchRequest request) {
         TargetCommission targetCommission = targetCommissionService.getOneById(request.getTargetCommissionId());
-
+        // TODO: Add createdBy
         // Find for check existing to re-use entity
         TargetBranch targetBranch = targetBranchRepository.findByTargetCommissionId(targetCommission.getId())
                 .orElseGet(() -> TargetBranch.builder()
                         .status("New")
-                        .requestedAt(LocalDateTime.now())
                         .targetCommission(targetCommission)
                         .build());
 
