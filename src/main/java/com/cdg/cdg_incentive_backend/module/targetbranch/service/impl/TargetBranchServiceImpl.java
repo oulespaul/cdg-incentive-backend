@@ -6,6 +6,7 @@ import com.cdg.cdg_incentive_backend.module.department.entity.Department;
 import com.cdg.cdg_incentive_backend.module.department.service.DepartmentService;
 import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.cdg.cdg_incentive_backend.module.subdepartment.service.SubDepartmentService;
+import com.cdg.cdg_incentive_backend.module.targetbranch.dto.TargetBranchDetailDto;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
@@ -158,7 +159,7 @@ public class TargetBranchServiceImpl implements TargetBranchService {
 
     @Override
     public Page<TargetBranchDetailResponse> getAllDetail(String year, String month, Pageable pageable) {
-        Page<TargetBranch> targetBranchPage = targetBranchRepository.findAllDetail(year, month, pageable);
+        Page<TargetBranchDetailDto> targetBranchPage = targetBranchRepository.findAllDetail(year, month, pageable);
         List<TargetBranchDetailResponse> targetBranchDetailResponseList = targetBranchDetailResponseMapper.fromEntityToDtoList(
                 targetBranchPage.getContent()
         );
