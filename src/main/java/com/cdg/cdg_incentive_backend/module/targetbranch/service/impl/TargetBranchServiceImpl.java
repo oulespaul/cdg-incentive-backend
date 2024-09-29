@@ -63,13 +63,14 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     @Override
     public void createTargetBranch(CreateTargetBranchRequest request) {
         TargetCommission targetCommission = targetCommissionService.getOneById(request.getTargetCommissionId());
-        // TODO: Add createdBy
         // Find for check existing to re-use entity
         TargetBranch targetBranch = targetBranchRepository.findByTargetCommissionId(targetCommission.getId())
                 .orElseGet(() -> TargetBranch.builder()
                         .status("New")
                         .targetCommission(targetCommission)
                         .build());
+        // TODO: Refactor to use session
+        targetBranch.setCreatedBy(request.getCreatedBy());
 
         targetBranch = targetBranchRepository.save(targetBranch);
 

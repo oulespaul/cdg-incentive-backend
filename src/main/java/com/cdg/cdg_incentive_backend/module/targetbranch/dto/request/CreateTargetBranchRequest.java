@@ -16,4 +16,5 @@ public class CreateTargetBranchRequest {
     List<TargetDeptRequest> targetDeptList;
     List<TargetSMMDSMRequest> targetSMMDSMList;
     List<TargetDMMRequest> targetDMMList;
+    String createdBy;
 }
