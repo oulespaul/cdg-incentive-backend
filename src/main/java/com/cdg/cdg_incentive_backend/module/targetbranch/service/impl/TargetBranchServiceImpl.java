@@ -159,8 +159,8 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     }
 
     @Override
-    public Page<TargetBranchDetailResponse> getAllDetail(String year, String month, Pageable pageable) {
-        Page<TargetBranchDetailDto> targetBranchPage = targetBranchRepository.findAllDetail(year, month, pageable);
+    public Page<TargetBranchDetailResponse> getAllDetail(String year, String month, String status, String branchNumber, String branchBU, String branchCode, Pageable pageable) {
+        Page<TargetBranchDetailDto> targetBranchPage = targetBranchRepository.findAllDetail(year, month, status, branchNumber, branchBU, branchCode, pageable);
         List<TargetBranchDetailResponse> targetBranchDetailResponseList = targetBranchDetailResponseMapper.fromEntityToDtoList(
                 targetBranchPage.getContent()
         );

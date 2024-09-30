@@ -11,6 +11,7 @@ public interface TargetBranchService {
 
     TargetBranchResponse getOneByTargetCommissionId(Integer targetCommissionId);
 
-    Page<TargetBranchDetailResponse> getAllDetail(String year, String month, Pageable pageable);
+    Page<TargetBranchDetailResponse> getAllDetail(String year, String month, String status, String branchNumber, String branchBU, String branchCode, Pageable pageable);
+
     void deleteById(Integer targetBranchId);
 }

@@ -30,11 +30,15 @@ public class TargetBranchController {
     ResponseEntity<Page<TargetBranchDetailResponse>> getAll(
             @RequestParam(value = "year", required = false) String year,
             @RequestParam(value = "month", required = false) String month,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "branchNumber", required = false) String branchNumber,
+            @RequestParam(value = "branchBU", required = false) String branchBU,
+            @RequestParam(value = "branchCode", required = false) String branchCode,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(targetBranchService.getAllDetail(year, month, pageable));
+        return ResponseEntity.ok(targetBranchService.getAllDetail(year, month, status, branchNumber, branchBU, branchCode, pageable));
     }
 
     @GetMapping("target-commission/{target-commission-id}")
