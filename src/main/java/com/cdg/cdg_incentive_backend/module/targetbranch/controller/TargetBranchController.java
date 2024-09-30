@@ -4,7 +4,6 @@ import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTarge
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchService;
-import com.oracle.svm.core.annotate.Delete;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
