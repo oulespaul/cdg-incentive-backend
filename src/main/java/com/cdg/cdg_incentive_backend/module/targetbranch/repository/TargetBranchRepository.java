@@ -25,7 +25,7 @@ public interface TargetBranchRepository extends JpaRepository<TargetBranch, Inte
                 tc.branch.branchNumber as branchNumber,
                 tc.branch.name as branchName,
                 tc.branch.branchCode as branchCode,
-                COALESCE(SUM(tc.comTgTotal), 0) as targetCommission,
+                COALESCE(MAX(tc.comTgTotal), 0) as targetCommission,
                 COALESCE(SUM(tds.actualSalesLastYear), 0) + COALESCE(SUM(tdm.actualSalesLastYear), 0) as actualSalesLyTotal,
                 COALESCE(SUM(tds.goalId), 0) + COALESCE(SUM(tdm.goalId), 0) as targetID,
                 COALESCE(SUM(tih.actualSalesIDLastYear), 0) + COALESCE(SUM(td.actualSalesIDLastYear), 0) as actualLyID
@@ -72,6 +72,33 @@ public interface TargetBranchRepository extends JpaRepository<TargetBranch, Inte
             String branchBU,
             String branchCode,
             Pageable pageable);
+
+    @Query("""
+            SELECT new com.cdg.cdg_incentive_backend.module.targetbranch.dto.TargetBranchDetailDto(
+                tb.id as id,
+                tb.status as status,
+                tc.year as year,
+                tc.month as month,
+                tc.branch.bu as branchBU,
+                tc.branch.branchNumber as branchNumber,
+                tc.branch.name as branchName,
+                tc.branch.branchCode as branchCode,
+                COALESCE(MAX(tc.comTgTotal), 0) as targetCommission,
+                COALESCE(SUM(tds.actualSalesLastYear), 0) + COALESCE(SUM(tdm.actualSalesLastYear), 0) as actualSalesLyTotal,
+                COALESCE(SUM(tds.goalId), 0) + COALESCE(SUM(tdm.goalId), 0) as targetID,
+                COALESCE(SUM(tih.actualSalesIDLastYear), 0) + COALESCE(SUM(td.actualSalesIDLastYear), 0) as actualLyID
+            )
+            FROM TargetBranch tb
+            JOIN tb.targetCommission tc
+            LEFT JOIN tb.targetSMMs ts
+            LEFT JOIN tb.targetSMMs.targetDSMs tds
+            LEFT JOIN tb.targetDMMs tdm
+            LEFT JOIN tb.targetInHouses tih
+            LEFT JOIN tb.targetDept td
+            WHERE tb.id = :targetBranchId
+            GROUP BY tb.id,tb.status,tc.year,tc.month,tc.branch.bu,tc.branch.branchNumber,tc.branch.name,tc.branch.branchCode
+            """)
+    Optional<TargetBranchDetailDto> findDetailByTargetBranchId(Integer targetBranchId);
 
     @Transactional
     @Modifying

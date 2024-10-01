@@ -173,4 +173,10 @@ public class TargetBranchServiceImpl implements TargetBranchService {
         targetDeptService.deleteByTargetBranchId(targetBranchId);
         targetBranchRepository.deleteById(targetBranchId);
     }
+
+    @Override
+    public TargetBranchResponse getDetailByTargetBranchId(Integer targetBranchId) {
+        Optional<TargetBranch> targetBranchOptional = targetBranchRepository.findById(targetBranchId);
+        return targetBranchOptional.map(targetBranchResponseMapper::fromEntityToDto).orElse(null);
+    }
 }

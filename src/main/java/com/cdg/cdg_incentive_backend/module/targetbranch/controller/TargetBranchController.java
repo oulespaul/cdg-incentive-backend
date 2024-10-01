@@ -55,4 +55,11 @@ public class TargetBranchController {
         targetBranchService.deleteById(targetBranchId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Target Branch deleted successfully.");
     }
+
+    @GetMapping("{id}")
+    ResponseEntity<TargetBranchResponse> getOneByTargetBranch(
+            @PathVariable("id") Integer targetBranchId
+    ) {
+        return ResponseEntity.ok(targetBranchService.getDetailByTargetBranchId(targetBranchId));
+    }
 }

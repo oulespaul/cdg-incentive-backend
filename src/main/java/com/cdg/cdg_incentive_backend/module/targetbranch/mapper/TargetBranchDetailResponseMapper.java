@@ -25,7 +25,7 @@ public interface TargetBranchDetailResponseMapper {
             return BigDecimal.ZERO;
         }
         return ((targetBranch.getTargetCommission().subtract(targetBranch.getActualSalesLyTotal()))
-                .divide(targetBranch.getActualSalesLyTotal(), RoundingMode.HALF_UP)).multiply(new BigDecimal(100));
+                .divide(targetBranch.getActualSalesLyTotal(), 4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100));
     }
 
     default BigDecimal calChangeTargetIDPercentage(TargetBranchDetailDto targetBranch) {
@@ -33,6 +33,6 @@ public interface TargetBranchDetailResponseMapper {
             return BigDecimal.ZERO;
         }
         return ((targetBranch.getTargetID().subtract(targetBranch.getActualLyID()))
-                .divide(targetBranch.getActualLyID(), RoundingMode.HALF_UP)).multiply(new BigDecimal(100));
+                .divide(targetBranch.getActualLyID(), 4, RoundingMode.HALF_UP)).multiply(new BigDecimal(100));
     }
 }
