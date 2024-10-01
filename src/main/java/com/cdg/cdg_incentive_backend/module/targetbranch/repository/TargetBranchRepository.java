@@ -63,6 +63,7 @@ public interface TargetBranchRepository extends JpaRepository<TargetBranch, Inte
                     AND (:branchBU IS NULL OR tc.branch.bu = :branchBU)
                     AND (:branchCode IS NULL OR tc.branch.branchCode = :branchCode)
                     GROUP BY tb.id,tb.status,tc.year,tc.month,tc.branch.bu,tc.branch.branchNumber,tc.branch.name,tc.branch.branchCode
+                    ORDER BY tc.year DESC,tc.month DESC, tb.requestedAt ASC
                     """)
     Page<TargetBranchDetailDto> findAllDetail(
             String year,
