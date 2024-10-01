@@ -39,6 +39,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -178,5 +179,21 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     public TargetBranchResponse getDetailByTargetBranchId(Integer targetBranchId) {
         Optional<TargetBranch> targetBranchOptional = targetBranchRepository.findById(targetBranchId);
         return targetBranchOptional.map(targetBranchResponseMapper::fromEntityToDto).orElse(null);
+    }
+
+    @Override
+    public void makeAction(Integer targetBranchId, String action) {
+        TargetBranch targetBranch = targetBranchRepository.findById(targetBranchId)
+                .orElseThrow(() -> new RuntimeException("Target branch not found"));
+        switch (action) {
+            case "Pending" -> {
+                // TODO: Set actual approve
+                targetBranch.setRequestedBy(targetBranch.getCreatedBy());
+                targetBranch.setRequestedAt(LocalDateTime.now());
+            }
+            default -> throw new RuntimeException("Invalid Action");
+        }
+        targetBranch.setStatus(action);
+        targetBranchRepository.save(targetBranch);
     }
 }

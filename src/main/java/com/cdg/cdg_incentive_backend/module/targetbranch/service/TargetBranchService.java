@@ -14,5 +14,8 @@ public interface TargetBranchService {
     Page<TargetBranchDetailResponse> getAllDetail(String year, String month, String status, String branchNumber, String branchBU, String branchCode, Pageable pageable);
 
     void deleteById(Integer targetBranchId);
+
     TargetBranchResponse getDetailByTargetBranchId(Integer targetBranchId);
+
+    void makeAction(Integer targetBranchId, String action);
 }

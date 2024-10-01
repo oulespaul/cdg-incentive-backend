@@ -62,4 +62,13 @@ public class TargetBranchController {
     ) {
         return ResponseEntity.ok(targetBranchService.getDetailByTargetBranchId(targetBranchId));
     }
+
+    @PutMapping("/make-action/{id}/{action}")
+    ResponseEntity<String> makeTargetBranchAction(
+            @PathVariable("id") Integer targetBranchId,
+            @PathVariable("action") String action
+    ) {
+        targetBranchService.makeAction(targetBranchId, action);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Target Branch action successfully.");
+    }
 }
