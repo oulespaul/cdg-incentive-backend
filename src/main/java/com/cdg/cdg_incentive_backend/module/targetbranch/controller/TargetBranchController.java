@@ -1,6 +1,7 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.controller;
 
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.MakeActionRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.service.TargetBranchService;
@@ -10,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -63,12 +66,14 @@ public class TargetBranchController {
         return ResponseEntity.ok(targetBranchService.getDetailByTargetBranchId(targetBranchId));
     }
 
-    @PutMapping("/make-action/{id}/{action}")
+    @PutMapping("/make-action")
     ResponseEntity<String> makeTargetBranchAction(
-            @PathVariable("id") Integer targetBranchId,
-            @PathVariable("action") String action
+            @RequestBody MakeActionRequest makeActionRequest,
+            @AuthenticationPrincipal Jwt jwt
     ) {
-        targetBranchService.makeAction(targetBranchId, action);
+        // TODO: Refactor
+        String name = jwt.getClaimAsString("name");
+        targetBranchService.makeAction(makeActionRequest, name);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Target Branch action successfully.");
     }
 }

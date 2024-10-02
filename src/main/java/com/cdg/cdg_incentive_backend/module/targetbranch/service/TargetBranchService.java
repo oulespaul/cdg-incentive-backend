@@ -1,6 +1,7 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.service;
 
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.MakeActionRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import org.springframework.data.domain.Page;
@@ -17,5 +18,5 @@ public interface TargetBranchService {
 
     TargetBranchResponse getDetailByTargetBranchId(Integer targetBranchId);
 
-    void makeAction(Integer targetBranchId, String action);
+    void makeAction(MakeActionRequest makeActionRequest, String name);
 }

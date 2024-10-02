@@ -8,6 +8,7 @@ import com.cdg.cdg_incentive_backend.module.subdepartment.entity.SubDepartment;
 import com.cdg.cdg_incentive_backend.module.subdepartment.service.SubDepartmentService;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.TargetBranchDetailDto;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.CreateTargetBranchRequest;
+import com.cdg.cdg_incentive_backend.module.targetbranch.dto.request.MakeActionRequest;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchDetailResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.dto.response.TargetBranchResponse;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
@@ -182,18 +183,28 @@ public class TargetBranchServiceImpl implements TargetBranchService {
     }
 
     @Override
-    public void makeAction(Integer targetBranchId, String action) {
-        TargetBranch targetBranch = targetBranchRepository.findById(targetBranchId)
-                .orElseThrow(() -> new RuntimeException("Target branch not found"));
-        switch (action) {
-            case "Pending" -> {
-                // TODO: Set actual approve
-                targetBranch.setRequestedBy(targetBranch.getCreatedBy());
-                targetBranch.setRequestedAt(LocalDateTime.now());
+    public void makeAction(MakeActionRequest makeActionRequest, String name) {
+        for (Integer targetBranchId : makeActionRequest.getTargetBranchIdList()) {
+            TargetBranch targetBranch = targetBranchRepository.findById(targetBranchId)
+                    .orElseThrow(() -> new RuntimeException("Target branch not found"));
+            switch (makeActionRequest.getAction()) {
+                case "Pending" -> {
+                    targetBranch.setRequestedBy(targetBranch.getCreatedBy());
+                    targetBranch.setRequestedAt(LocalDateTime.now());
+                }
+                case "Approved" -> {
+                    targetBranch.setApprovedBy(name);
+                    targetBranch.setApprovedAt(LocalDateTime.now());
+                }
+                case "Rejected" -> {
+                    targetBranch.setRejectedBy(name);
+                    targetBranch.setRejectedAt(LocalDateTime.now());
+                    targetBranch.setRejectedReason(makeActionRequest.getRejectReason());
+                }
+                default -> throw new RuntimeException("Invalid Action");
             }
-            default -> throw new RuntimeException("Invalid Action");
+            targetBranch.setStatus(makeActionRequest.getAction());
+            targetBranchRepository.save(targetBranch);
         }
-        targetBranch.setStatus(action);
-        targetBranchRepository.save(targetBranch);
     }
 }
