@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.branch.entity;
 
-import com.cdg.cdg_incentive_backend.entity.AppUser;
+import com.cdg.cdg_incentive_backend.module.authentication.entity.AppUser;
 import com.cdg.cdg_incentive_backend.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.fasterxml.jackson.annotation.JsonIgnore;

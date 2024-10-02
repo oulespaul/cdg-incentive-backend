@@ -1,5 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.controller;
 
+import com.cdg.cdg_incentive_backend.module.authentication.service.AppUserService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
@@ -24,6 +25,7 @@ public class TargetCommissionController {
     private final TargetCommissionService targetCommissionService;
     private final TargetCommissionExcelService targetCommissionExcelService;
     private final TargetCommissionResponseMapper targetCommissionResponseMapper;
+    private final AppUserService appUserService;
 
     private static final List<String> VALID_EXTENSIONS = Arrays.asList("xlsx", "xls");
 
