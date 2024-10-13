@@ -1,15 +1,14 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
 import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
-import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
 import com.cdg.cdg_incentive_backend.module.branch.service.BranchService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -32,25 +31,6 @@ public class TargetCommissionExcelService extends AbstractExcelService<TargetCom
         dto.setCreatedAt(LocalDateTime.now());
         dto.setCreatedBy("SYSTEM");
         return dto;
-    }
-
-    @Override
-    public List<String> validateData(List<TargetCommission> data) {
-        List<String> errors = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            TargetCommission row = data.get(i);
-
-            if (row.getYear() == null || row.getYear().isEmpty()) {
-                errors.add("Row " + (i + 1) + ": 'Year' is missing.");
-            }
-            if (row.getMonth() == null || row.getMonth().isEmpty()) {
-                errors.add("Row " + (i + 1) + ": 'Month' is missing.");
-            }
-            if (row.getComTgTotal() == null) {
-                errors.add("Row " + (i + 1) + ": 'Com Tg Total' is missing.");
-            }
-        }
-        return errors;
     }
 
     private Branch getBranchByBranchNumber(List<Branch> branchList, String branchNumber) {

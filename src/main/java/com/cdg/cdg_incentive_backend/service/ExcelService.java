@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface ExcelService<T> {
     List<T> parseExcelFile(MultipartFile file) throws IOException;
-
-    List<String> validateData(List<T> data);
 }
