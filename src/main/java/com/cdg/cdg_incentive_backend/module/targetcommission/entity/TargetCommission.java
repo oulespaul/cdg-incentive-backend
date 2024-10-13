@@ -1,9 +1,8 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.entity;
 
-import com.cdg.cdg_incentive_backend.entity.BaseEntity;
+import com.cdg.cdg_incentive_backend.shared.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;

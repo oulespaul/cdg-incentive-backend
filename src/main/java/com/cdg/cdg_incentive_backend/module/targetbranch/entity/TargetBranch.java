@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.entity;
 
-import com.cdg.cdg_incentive_backend.entity.BaseEntity;
+import com.cdg.cdg_incentive_backend.shared.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdept.entity.TargetDept;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetdmm.entity.TargetDMM;
 import com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity.TargetInHouse;

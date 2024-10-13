@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.employee.controller;
 
-import com.cdg.cdg_incentive_backend.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;
 import com.cdg.cdg_incentive_backend.module.employee.service.impl.EmployeeExcelService;

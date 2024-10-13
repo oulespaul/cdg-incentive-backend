@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.service;
+package com.cdg.cdg_incentive_backend.shared.service;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

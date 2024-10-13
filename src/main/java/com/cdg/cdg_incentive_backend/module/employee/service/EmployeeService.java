@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.employee.service;
 
-import com.cdg.cdg_incentive_backend.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

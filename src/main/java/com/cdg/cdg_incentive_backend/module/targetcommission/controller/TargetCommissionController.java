@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.controller;
 
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
@@ -48,21 +48,21 @@ public class TargetCommissionController {
     }
 
     @GetMapping("/filter/year")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterYearTargetCommission(
+    public ResponseEntity<List<FilterResponse>> getFilterYearTargetCommission(
             @RequestParam(value = "branchId", required = false) Integer branchId
     ) {
         return ResponseEntity.ok(targetCommissionService.getDistinctYearByBranchId(branchId));
     }
 
     @GetMapping("/filter/month")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterMonthTargetCommission(
+    public ResponseEntity<List<FilterResponse>> getFilterMonthTargetCommission(
             @RequestParam(value = "branchId", required = false) Integer branchId
     ) {
         return ResponseEntity.ok(targetCommissionService.getDistinctMonthByBranchId(branchId));
     }
 
     @GetMapping("/filter/branch")
-    public ResponseEntity<List<TargetCommissionFilterResponse>> getFilterBranchNumberTargetCommission() {
+    public ResponseEntity<List<FilterResponse>> getFilterBranchNumberTargetCommission() {
         return ResponseEntity.ok(targetCommissionService.getDistinctBranchNumber());
     }
 

@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.authentication.entity;
 
-import com.cdg.cdg_incentive_backend.entity.BaseEntity;
+import com.cdg.cdg_incentive_backend.shared.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import jakarta.persistence.*;
 import lombok.*;

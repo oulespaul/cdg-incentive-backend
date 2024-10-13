@@ -1,9 +1,9 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
-import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionFilterMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.repository.TargetCommissionRepository;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
@@ -18,8 +18,8 @@ import java.util.List;
 @Service
 public class TargetCommissionServiceImpl implements TargetCommissionService {
     private final TargetCommissionRepository targetCommissionRepository;
-    private final TargetCommissionFilterMapper targetCommissionFilterMapper;
     private final TargetCommissionResponseMapper targetCommissionResponseMapper;
+    private final FilterMapper filterMapper;
 
     @Override
     public Page<TargetCommissionResponse> getAllResponse(
@@ -52,19 +52,19 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctYearByBranchId(Integer branchId) {
+    public List<FilterResponse> getDistinctYearByBranchId(Integer branchId) {
         List<String> distinctYearList = targetCommissionRepository.findDistinctYearByBranchId(branchId);
-        return targetCommissionFilterMapper.stringValueToDTOList(distinctYearList);
+        return filterMapper.stringValueToDTOList(distinctYearList);
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctMonthByBranchId(Integer branchId) {
+    public List<FilterResponse> getDistinctMonthByBranchId(Integer branchId) {
         List<String> distinctMonthList = targetCommissionRepository.findDistinctMonthByBranchId(branchId);
-        return targetCommissionFilterMapper.stringValueToDTOList(distinctMonthList);
+        return filterMapper.stringValueToDTOList(distinctMonthList);
     }
 
     @Override
-    public List<TargetCommissionFilterResponse> getDistinctBranchNumber() {
+    public List<FilterResponse> getDistinctBranchNumber() {
         return targetCommissionRepository.findDistinctBranchNumber();
     }
 

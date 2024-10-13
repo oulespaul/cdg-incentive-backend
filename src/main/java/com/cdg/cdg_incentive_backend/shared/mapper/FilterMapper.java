@@ -1,7 +1,6 @@
-package com.cdg.cdg_incentive_backend.mapper;
+package com.cdg.cdg_incentive_backend.shared.mapper;
 
-import com.cdg.cdg_incentive_backend.dto.response.FilterResponse;
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

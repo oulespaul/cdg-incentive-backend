@@ -1,4 +1,4 @@
-package com.cdg.cdg_incentive_backend.entity;
+package com.cdg.cdg_incentive_backend.shared.entity;
 
 
 import jakarta.persistence.Column;

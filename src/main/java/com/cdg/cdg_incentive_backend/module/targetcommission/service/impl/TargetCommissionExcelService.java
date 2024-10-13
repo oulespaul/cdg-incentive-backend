@@ -3,7 +3,7 @@ package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 import com.cdg.cdg_incentive_backend.module.branch.entity.Branch;
 import com.cdg.cdg_incentive_backend.module.branch.service.BranchService;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
-import com.cdg.cdg_incentive_backend.service.AbstractExcelService;
+import com.cdg.cdg_incentive_backend.shared.service.AbstractExcelService;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.stereotype.Service;

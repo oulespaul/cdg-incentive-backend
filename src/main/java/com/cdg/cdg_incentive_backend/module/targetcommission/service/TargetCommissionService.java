@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service;
 
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import org.springframework.data.domain.Page;
@@ -22,10 +22,10 @@ public interface TargetCommissionService {
 
     void saveAll(List<TargetCommission> targetCommissionList);
 
-    List<TargetCommissionFilterResponse> getDistinctYearByBranchId(Integer branchId);
+    List<FilterResponse> getDistinctYearByBranchId(Integer branchId);
 
-    List<TargetCommissionFilterResponse> getDistinctMonthByBranchId(Integer branchId);
+    List<FilterResponse> getDistinctMonthByBranchId(Integer branchId);
 
-    List<TargetCommissionFilterResponse> getDistinctBranchNumber();
+    List<FilterResponse> getDistinctBranchNumber();
     TargetCommissionResponse getOneByYearAndMonthAndBranchId(String year, String month, Integer branchId);
 }

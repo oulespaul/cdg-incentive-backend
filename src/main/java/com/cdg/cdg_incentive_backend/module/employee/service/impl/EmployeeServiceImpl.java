@@ -1,7 +1,7 @@
 package com.cdg.cdg_incentive_backend.module.employee.service.impl;
 
-import com.cdg.cdg_incentive_backend.dto.response.FilterResponse;
-import com.cdg.cdg_incentive_backend.mapper.FilterMapper;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.repository.EmployeeRepository;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;

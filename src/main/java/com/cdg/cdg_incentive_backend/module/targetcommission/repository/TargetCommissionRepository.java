@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.repository;
 
-import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import org.springframework.data.domain.Page;
@@ -56,13 +56,13 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
     List<String> findDistinctMonthByBranchId(Integer branchId);
 
     @Query("""
-            SELECT DISTINCT new com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionFilterResponse(
+            SELECT DISTINCT new com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse(
             CONCAT(s.branchNumber, ' - ', s.name) AS label,
             s.branchNumber AS value
             )
             FROM TargetCommission tc JOIN tc.branch s
             """)
-    List<TargetCommissionFilterResponse> findDistinctBranchNumber();
+    List<FilterResponse> findDistinctBranchNumber();
 
     Optional<TargetCommission> findOneByYearAndMonthAndBranchId(String year, String month, Integer branchId);
 }

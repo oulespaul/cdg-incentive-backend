@@ -1,6 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.targetbranch.submodule.targetinhouse.entity;
 
-import com.cdg.cdg_incentive_backend.entity.BaseEntity;
+import com.cdg.cdg_incentive_backend.shared.entity.BaseEntity;
 import com.cdg.cdg_incentive_backend.module.brand.entity.Brand;
 import com.cdg.cdg_incentive_backend.module.targetbranch.entity.TargetBranch;
 import jakarta.persistence.*;
