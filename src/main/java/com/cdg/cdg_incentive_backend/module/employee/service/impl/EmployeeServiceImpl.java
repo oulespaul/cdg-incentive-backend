@@ -1,10 +1,10 @@
 package com.cdg.cdg_incentive_backend.module.employee.service.impl;
 
-import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
-import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.repository.EmployeeRepository;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,5 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             default -> throw new RuntimeException("Invalid field name");
         };
         return filterMapper.stringValueToDTOList(distinctValues);
+    }
+
+    @Override
+    public Employee getEmployeeById(Integer id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 }

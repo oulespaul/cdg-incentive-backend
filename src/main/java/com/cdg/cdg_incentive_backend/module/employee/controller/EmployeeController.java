@@ -1,9 +1,9 @@
 package com.cdg.cdg_incentive_backend.module.employee.controller;
 
-import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;
 import com.cdg.cdg_incentive_backend.module.employee.service.impl.EmployeeExcelService;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -57,14 +57,10 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.getDistinctFilter("month"));
     }
 
-//    @GetMapping("/detail")
-//    public ResponseEntity<TargetCommissionResponse> getOneByCriteria(
-//            @RequestParam(value = "year", required = false) String year,
-//            @RequestParam(value = "month", required = false) String month,
-//            @RequestParam(value = "branchId", required = false) Integer branchId
-//    ) {
-//        return ResponseEntity.ok(targetCommissionService.getOneByYearAndMonthAndBranchId(year, month, branchId));
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getOneByCriteria(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(employeeService.getEmployeeById(id));
+    }
 
     @PostMapping("/upload/validate")
     public ResponseEntity<?> validateFileUpload(@RequestParam("file") MultipartFile file) {
