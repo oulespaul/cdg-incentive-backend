@@ -42,4 +42,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getEmployeeById(Integer id) {
         return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        employeeRepository.deleteById(id);
+    }
 }

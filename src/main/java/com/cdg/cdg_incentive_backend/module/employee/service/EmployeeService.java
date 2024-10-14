@@ -15,4 +15,6 @@ public interface EmployeeService {
     List<FilterResponse> getDistinctFilter(String fieldName);
 
     Employee getEmployeeById(Integer id);
+
+    void deleteById(Integer id);
 }

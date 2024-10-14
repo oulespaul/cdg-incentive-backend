@@ -100,6 +100,12 @@ public class EmployeeController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") Integer id) {
+        employeeService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Employee deleted successfully.");
+    }
+
     private boolean hasValidExtension(String filename) {
         String extension = getExtension(filename);
         return VALID_EXTENSIONS.contains(extension);
