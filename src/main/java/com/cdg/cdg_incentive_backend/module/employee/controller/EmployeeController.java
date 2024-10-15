@@ -106,6 +106,12 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Employee deleted successfully.");
     }
 
+    @PostMapping("/duplicate/{id}")
+    public ResponseEntity<String> duplicateEmployeeById(@PathVariable("id") Integer id) {
+        employeeService.duplicateEmployeeById(id);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Employee duplicated successfully.");
+    }
+
     private boolean hasValidExtension(String filename) {
         String extension = getExtension(filename);
         return VALID_EXTENSIONS.contains(extension);

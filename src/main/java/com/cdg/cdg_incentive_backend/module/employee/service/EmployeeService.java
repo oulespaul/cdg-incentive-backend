@@ -17,4 +17,5 @@ public interface EmployeeService {
     Employee getEmployeeById(Integer id);
 
     void deleteById(Integer id);
+    void duplicateEmployeeById(Integer id);
 }
