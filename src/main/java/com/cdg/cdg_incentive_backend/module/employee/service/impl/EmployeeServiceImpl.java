@@ -36,12 +36,14 @@ public class EmployeeServiceImpl extends BaseSessionService implements EmployeeS
 
     @Override
     public List<FilterResponse> getDistinctFilter(String fieldName) {
-        List<String> distinctValues = switch (fieldName) {
-            case "year" -> employeeRepository.findDistinctYear();
-            case "month" -> employeeRepository.findDistinctMonth();
+        return switch (fieldName) {
+            case "year" -> filterMapper.stringValueToDTOList(employeeRepository.findDistinctYear());
+            case "month" -> filterMapper.stringValueToDTOList(employeeRepository.findDistinctMonth());
+            case "employeeGroup" -> employeeRepository.findDistinctEmployeeGroup();
+            case "positionDescription" -> employeeRepository.findDistinctPositionDescription();
+            case "corporateTitle" -> employeeRepository.findDistinctCorporateTitle();
             default -> throw new RuntimeException("Invalid field name");
         };
-        return filterMapper.stringValueToDTOList(distinctValues);
     }
 
     @Override

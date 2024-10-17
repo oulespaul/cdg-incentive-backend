@@ -46,16 +46,11 @@ public class EmployeeController {
                 pageRequest));
     }
 
-    @GetMapping("/filter/year")
+    @GetMapping("/filter/{fieldName}")
     public ResponseEntity<List<FilterResponse>> getFilterYear(
+            @PathVariable("fieldName") String fieldName
     ) {
-        return ResponseEntity.ok(employeeService.getDistinctFilter("year"));
-    }
-
-    @GetMapping("/filter/month")
-    public ResponseEntity<List<FilterResponse>> getFilterMonth(
-    ) {
-        return ResponseEntity.ok(employeeService.getDistinctFilter("month"));
+        return ResponseEntity.ok(employeeService.getDistinctFilter(fieldName));
     }
 
     @GetMapping("/{id}")

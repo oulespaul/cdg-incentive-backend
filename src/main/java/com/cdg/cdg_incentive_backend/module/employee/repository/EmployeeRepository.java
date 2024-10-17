@@ -1,6 +1,7 @@
 package com.cdg.cdg_incentive_backend.module.employee.repository;
 
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -39,4 +40,31 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
             FROM Employee e
             """)
     List<String> findDistinctMonth();
+
+    @Query("""
+            SELECT DISTINCT new com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse(
+            e.employeeGroup AS label,
+            e.employeeGroup AS value
+            )
+            FROM Employee e
+            """)
+    List<FilterResponse> findDistinctEmployeeGroup();
+
+    @Query("""
+            SELECT DISTINCT new com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse(
+            e.positionDescription AS label,
+            e.positionDescription AS value
+            )
+            FROM Employee e
+            """)
+    List<FilterResponse> findDistinctPositionDescription();
+
+    @Query("""
+            SELECT DISTINCT new com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse(
+            e.corporateTitle AS label,
+            e.corporateTitle AS value
+            )
+            FROM Employee e
+            """)
+    List<FilterResponse> findDistinctCorporateTitle();
 }
