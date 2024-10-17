@@ -20,6 +20,14 @@ public class Employee extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "'Year' is missing.")
+    @Column(name = "year")
+    private String year;
+
+    @NotEmpty(message = "'Month' is missing.")
+    @Column(name = "month")
+    private String month;
+
     @NotEmpty(message = "'Business Unit' is missing.")
     @Column(name = "business_unit")
     private String businessUnit;
