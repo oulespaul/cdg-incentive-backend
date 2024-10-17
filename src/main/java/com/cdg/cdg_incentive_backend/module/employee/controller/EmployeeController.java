@@ -1,5 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.employee.controller;
 
+import com.cdg.cdg_incentive_backend.module.employee.dto.UpdateEmployeeRequest;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;
 import com.cdg.cdg_incentive_backend.module.employee.service.impl.EmployeeExcelService;
@@ -110,6 +111,15 @@ public class EmployeeController {
     public ResponseEntity<String> duplicateEmployeeById(@PathVariable("id") Integer id) {
         employeeService.duplicateEmployeeById(id);
         return ResponseEntity.status(HttpStatus.CREATED).body("Employee duplicated successfully.");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateEmployeeById(
+            @PathVariable("id") Integer id,
+            @RequestBody UpdateEmployeeRequest employee
+    ) {
+        employeeService.updateEmployeeById(id, employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Employee updated successfully.");
     }
 
     private boolean hasValidExtension(String filename) {

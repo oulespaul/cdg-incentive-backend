@@ -1,5 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.employee.service.impl;
 
+import com.cdg.cdg_incentive_backend.module.employee.dto.UpdateEmployeeRequest;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.module.employee.repository.EmployeeRepository;
 import com.cdg.cdg_incentive_backend.module.employee.service.EmployeeService;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -63,5 +66,29 @@ public class EmployeeServiceImpl extends BaseSessionService implements EmployeeS
         newEmployee.setUpdatedAt(null);
         newEmployee.setUpdatedBy(null);
         employeeRepository.save(newEmployee);
+    }
+
+    @Override
+    public void updateEmployeeById(Integer id, UpdateEmployeeRequest employeeUpdateRequest) {
+        AppUserInfo sessionClaimsInfo = this.getAppUserSessionClaimsInfo();
+        Employee employeeToUpdate = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
+
+        employeeToUpdate.setEmployeeId(employeeUpdateRequest.getEmployeeId());
+        employeeToUpdate.setNewCostCenter(employeeUpdateRequest.getNewCostCenter());
+        employeeToUpdate.setEmployeeGroup(employeeUpdateRequest.getEmployeeGroup());
+        employeeToUpdate.setBusinessUnit(employeeUpdateRequest.getBusinessUnit());
+        employeeToUpdate.setPositionDescription(employeeUpdateRequest.getPositionDescription());
+        employeeToUpdate.setScheme(employeeUpdateRequest.getScheme());
+        employeeToUpdate.setDayWorking(employeeUpdateRequest.getDayWorking());
+        employeeToUpdate.setCostCenter(employeeUpdateRequest.getCostCenter());
+        employeeToUpdate.setBrandId(employeeUpdateRequest.getBrandId());
+        employeeToUpdate.setCorporateTitle(employeeUpdateRequest.getCorporateTitle());
+        employeeToUpdate.setBranchNo(employeeUpdateRequest.getBranchNo());
+        employeeToUpdate.setHireDate(employeeUpdateRequest.getHireDate() != null ? LocalDate.parse(employeeUpdateRequest.getHireDate()) : null);
+        employeeToUpdate.setBrandId(employeeUpdateRequest.getBrandId());
+        employeeToUpdate.setTerminatedDate(employeeUpdateRequest.getTerminatedDate() != null ? LocalDate.parse(employeeUpdateRequest.getTerminatedDate()) : null);
+        employeeToUpdate.setUpdatedAt(LocalDateTime.now());
+        employeeToUpdate.setUpdatedBy(sessionClaimsInfo.getUsername());
+        employeeRepository.save(employeeToUpdate);
     }
 }

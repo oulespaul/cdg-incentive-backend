@@ -1,5 +1,6 @@
 package com.cdg.cdg_incentive_backend.module.employee.service;
 
+import com.cdg.cdg_incentive_backend.module.employee.dto.UpdateEmployeeRequest;
 import com.cdg.cdg_incentive_backend.module.employee.entity.Employee;
 import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import org.springframework.data.domain.Page;
@@ -18,4 +19,5 @@ public interface EmployeeService {
 
     void deleteById(Integer id);
     void duplicateEmployeeById(Integer id);
+    void updateEmployeeById(Integer id, UpdateEmployeeRequest employee);
 }
