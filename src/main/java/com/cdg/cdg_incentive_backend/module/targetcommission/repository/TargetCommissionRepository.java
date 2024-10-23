@@ -1,8 +1,8 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.repository;
 
-import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -52,8 +52,9 @@ public interface TargetCommissionRepository extends JpaRepository<TargetCommissi
             SELECT DISTINCT tc.month
             FROM TargetCommission tc
             WHERE (:branchId IS NULL OR tc.branch.id = :branchId)
+            AND (:year IS NULL OR tc.year = :year)
             """)
-    List<String> findDistinctMonthByBranchId(Integer branchId);
+    List<String> findDistinctMonthByBranchId(Integer branchId, String year);
 
     @Query("""
             SELECT DISTINCT new com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse(

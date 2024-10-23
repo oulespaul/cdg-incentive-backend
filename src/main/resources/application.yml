@@ -2,13 +2,13 @@ spring:
   datasource:
     url: jdbc:postgresql:///${DB_DATABASE:cdg-dev}
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:\B@0bFb=a1&&p~]B}
+    password: ${DB_PASSWORD:postgres}
     hikari:
       minimum-idle: 2
       maximum-pool-size: 5
       data-source-properties:
         socketFactory: com.google.cloud.sql.postgres.SocketFactory
-        cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:ope-incentive-system-dev:asia-southeast1:cdg-incentive-dev}
+        cloudSqlInstance: ${DB_CLOUD_SQL_INSTANCE:lively-crane-432311-b0:asia-southeast1:cdg-incentive-dev}
   jpa:
     hibernate:
       ddl-auto: update

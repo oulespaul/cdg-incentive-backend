@@ -1,12 +1,12 @@
 package com.cdg.cdg_incentive_backend.module.targetcommission.service.impl;
 
-import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
-import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.dto.response.TargetCommissionResponse;
 import com.cdg.cdg_incentive_backend.module.targetcommission.entity.TargetCommission;
 import com.cdg.cdg_incentive_backend.module.targetcommission.mapper.TargetCommissionResponseMapper;
 import com.cdg.cdg_incentive_backend.module.targetcommission.repository.TargetCommissionRepository;
 import com.cdg.cdg_incentive_backend.module.targetcommission.service.TargetCommissionService;
+import com.cdg.cdg_incentive_backend.shared.dto.response.FilterResponse;
+import com.cdg.cdg_incentive_backend.shared.mapper.FilterMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -58,8 +58,8 @@ public class TargetCommissionServiceImpl implements TargetCommissionService {
     }
 
     @Override
-    public List<FilterResponse> getDistinctMonthByBranchId(Integer branchId) {
-        List<String> distinctMonthList = targetCommissionRepository.findDistinctMonthByBranchId(branchId);
+    public List<FilterResponse> getDistinctMonthByBranchId(Integer branchId, String year) {
+        List<String> distinctMonthList = targetCommissionRepository.findDistinctMonthByBranchId(branchId, year);
         return filterMapper.stringValueToDTOList(distinctMonthList);
     }
 
