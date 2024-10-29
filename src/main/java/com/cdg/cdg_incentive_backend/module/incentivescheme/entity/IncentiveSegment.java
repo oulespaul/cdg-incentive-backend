@@ -18,7 +18,7 @@ import java.util.Set;
 public class IncentiveSegment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "is_active")

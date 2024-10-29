@@ -23,4 +23,15 @@ public class IncentiveSegmentServiceImpl implements IncentiveSegmentService {
         List<IncentiveSegment> incentiveSegmentList = incentiveSegmentRepository.findAllActive();
         return incentiveSegmentResponseMapper.fromEntityToDtoList(incentiveSegmentList);
     }
+
+    @Override
+    public IncentiveSegment getOneById(Integer incentiveSegmentId) {
+        return incentiveSegmentRepository.findById(incentiveSegmentId)
+                .orElseThrow(() -> new RuntimeException("IncentiveSegment not found"));
+    }
+
+    @Override
+    public List<IncentiveSegment> getAllById(List<Integer> incentiveSegmentIdList) {
+        return incentiveSegmentRepository.findAllById(incentiveSegmentIdList);
+    }
 }

@@ -30,4 +30,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department getById(Integer id) {
         return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found"));
     }
+
+    @Override
+    public List<Department> getAllById(List<Integer> idList) {
+        return departmentRepository.findAllById(idList);
+    }
 }

@@ -4,6 +4,8 @@ import com.cdg.cdg_incentive_backend.module.department.entity.Department;
 import com.cdg.cdg_incentive_backend.shared.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,4 +41,11 @@ public class IncentiveScheme extends BaseEntity {
             joinColumns = @JoinColumn(name = "incentive_scheme_id"),
             inverseJoinColumns = @JoinColumn(name = "department_id"))
     private Set<Department> departments = new HashSet<>();
+    @OneToMany(mappedBy = "incentiveScheme", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<IncentiveSchemeMajorGroupCalculation> incentiveSchemeMajorGroupCalculations = new HashSet<>();
+
+    public void addIncentiveSchemeMajorGroupCalculation(IncentiveSchemeMajorGroupCalculation incentiveSchemeMajorGroupCalculation) {
+        this.getIncentiveSchemeMajorGroupCalculations().add(incentiveSchemeMajorGroupCalculation);
+    }
 }
